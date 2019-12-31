@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-12-31T14:04:30+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yunchang’s Notes</title><subtitle>Notes that I want to keep.</subtitle><author><name>Yunchang Chae</name></author><entry><title type="html">Markdown Exercise</title><link href="http://localhost:4000/blogging/Markdown_exercise/" rel="alternate" type="text/html" title="Markdown Exercise" /><published>2019-12-29T00:00:00+09:00</published><updated>2019-12-29T00:00:00+09:00</updated><id>http://localhost:4000/blogging/Markdown_exercise</id><content type="html" xml:base="http://localhost:4000/blogging/Markdown_exercise/">&lt;h1 id=&quot;마크다운-시작하기&quot;&gt;마크다운 시작하기&lt;/h1&gt;
+
+&lt;h3 id=&quot;문단&quot;&gt;문단&lt;/h3&gt;
+
+&lt;p&gt;여러 개의 빈줄이 있을 경우에도 마크다운에서는 하나의 빈줄로만 인식한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;제목&quot;&gt;제목&lt;/h3&gt;
+
+&lt;p&gt;’#’의 갯수로 제목의 크기를 지정할 수 있다. 6개까지 사용가능하며 ‘#’뒤에는 공백이 하나 필요하다.&lt;/p&gt;
+
+&lt;h1 id=&quot;heading1&quot;&gt;Heading1&lt;/h1&gt;
+&lt;h2 id=&quot;heading2&quot;&gt;Heading2&lt;/h2&gt;
+&lt;h3 id=&quot;heading3&quot;&gt;Heading3&lt;/h3&gt;
+&lt;h4 id=&quot;heading4&quot;&gt;Heading4&lt;/h4&gt;
+&lt;h5 id=&quot;heading5&quot;&gt;Heading5&lt;/h5&gt;
+&lt;h6 id=&quot;heading6&quot;&gt;Heading6&lt;/h6&gt;
+
+&lt;h2 id=&quot;인용&quot;&gt;인용&lt;/h2&gt;
+
+&lt;p&gt;’&amp;gt;’를 사용하여 인용문을 나타낸다. 한 문장에 하나의 ‘&amp;gt;’만 있으면 된다. 여러 문단을 연결하고 싶을 때는 빈줄에도 ‘&amp;gt;’를 해준다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Change your thoughts and you change your world. - Norman Vincent Peale&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Those who realize their folly are not true fools. - Zhuangzi&lt;/p&gt;
+
+  &lt;p&gt;Life is too important to be taken seriously. - Oscar Wilde&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;강조&quot;&gt;강조&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;굵게하기1&lt;/strong&gt; &lt;strong&gt;굵게하기2&lt;/strong&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;**굵게하기1**&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__굵게하기2__&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;기울이기&lt;/em&gt;1 &lt;em&gt;기울이기2&lt;/em&gt;  : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*기울이기1*&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_기울이기2_&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;굵은데 &lt;em&gt;기울여&lt;/em&gt;도 보기&lt;/strong&gt; :  ` &lt;strong&gt;굵은데 &lt;em&gt;기울여&lt;/em&gt;도 보기&lt;/strong&gt; `&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;굵은데 _기울여_도 보기&lt;/strong&gt;: ` &lt;strong&gt;굵은데 _기울여_도 보기&lt;/strong&gt;:`&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;기울었는데 &lt;strong&gt;여기만&lt;/strong&gt; 굵어요&lt;/em&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*기울었는데 **여기만** 굵어요*&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;기울었는데 &lt;strong&gt;여기만&lt;/strong&gt; 굵어요&lt;/em&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*기울었는데 __여기만__ 굵어요*&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;‘*’ 과 ‘/’ 는 같다.&lt;/p&gt;
+
+&lt;h3 id=&quot;취소선&quot;&gt;취소선&lt;/h3&gt;
+
+&lt;p&gt;&lt;del&gt;취소하기&lt;/del&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~~취소하기~~&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;목록&quot;&gt;목록&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;순서없는 목록1 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;* 순서없는 목록1 &lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;순서없는 목록2 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;- 순서없는 목록1 &lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;‘*‘과 ‘-‘의 역할이 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;첫번째
+    &lt;ol&gt;
+      &lt;li&gt;TAB으로 들여서 쓰기
+        &lt;ol&gt;
+          &lt;li&gt;얼마나
+            &lt;ul&gt;
+              &lt;li&gt;순서없이도 가능
+                &lt;ul&gt;
+                  &lt;li&gt;합니다.&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;많이
+            &lt;ol&gt;
+              &lt;li&gt;할 수 있을까?
+                &lt;ol&gt;
+                  &lt;li&gt;무한대라고 함&lt;/li&gt;
+                &lt;/ol&gt;
+              &lt;/li&gt;
+            &lt;/ol&gt;
+          &lt;/li&gt;
+          &lt;li&gt;SHIFT TAB 으로 내어쓰기도 할 수 있음&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;todo-list&quot;&gt;TODO list&lt;/h3&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;
+    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;체크박스 만들기 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;- [ ] 체크박스 만들기&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Space[Space]Space'Context'&lt;/code&gt; 형식임&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;
+    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;체크된 박스 만들기 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;- [x] &lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;링크&quot;&gt;링크&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;url&quot;&gt;링크이름&lt;/a&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[링크이름](url)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;###목록&quot;&gt;목록&lt;/a&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[목록](###목록)&lt;/code&gt; 이러한 링크도 가능한 듯&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;!&lt;/code&gt; 를 붙여서 image url로 이미지를 넣을 수 도 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;표&quot;&gt;표&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;헤더1&lt;/th&gt;
+      &lt;th&gt;헤더2&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;왼정렬&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;중정렬&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;우정렬&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;내용1&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;내용2&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;em&gt;내용3&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;내용4&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;| 헤더1 | 헤더2 |왼정렬|중정렬|우정렬|
+|------|----|:-|:-:|-:|
+| 내용1 | **내용2** |1|2|3|
+| _내용3_ | 내용4 |4|5|6|
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;코드-포맷&quot;&gt;코드 포맷&lt;/h3&gt;
+
+&lt;p&gt;수식&lt;/p&gt;
+
+&lt;p&gt;UML&lt;/p&gt;</content><author><name>Yunchang Chae</name></author><category term="markdown" /><category term="language" /><summary type="html">마크다운 시작하기</summary></entry></feed>

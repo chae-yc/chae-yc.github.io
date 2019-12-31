@@ -1,0 +1,638 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Markdown Exercise - Yunchang’s Notes</title>
+<meta name="description" content="마크다운 시작하기">
+
+
+  <meta name="author" content="Yunchang Chae">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Yunchang's Notes">
+<meta property="og:title" content="Markdown Exercise">
+<meta property="og:url" content="http://localhost:4000/blogging/Markdown_exercise/">
+
+
+  <meta property="og:description" content="마크다운 시작하기">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-12-29T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/blogging/Markdown_exercise/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Yunchang Chae",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Yunchang's Notes Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/88x88.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Yunchang's Notes
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/sitemap/" >Sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/yunchang.jpeg" alt="Yunchang Chae" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Yunchang Chae</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I want to be an <strong>amazing</strong> person.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:yunchang.chae@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://chae-yc.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/chae-yc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Markdown Exercise">
+    <meta itemprop="description" content="마크다운 시작하기">
+    <meta itemprop="datePublished" content="2019-12-29T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Markdown Exercise
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h1 id="마크다운-시작하기">마크다운 시작하기</h1>
+
+<h3 id="문단">문단</h3>
+
+<p>여러 개의 빈줄이 있을 경우에도 마크다운에서는 하나의 빈줄로만 인식한다.</p>
+
+<h3 id="제목">제목</h3>
+
+<p>’#’의 갯수로 제목의 크기를 지정할 수 있다. 6개까지 사용가능하며 ‘#’뒤에는 공백이 하나 필요하다.</p>
+
+<h1 id="heading1">Heading1</h1>
+<h2 id="heading2">Heading2</h2>
+<h3 id="heading3">Heading3</h3>
+<h4 id="heading4">Heading4</h4>
+<h5 id="heading5">Heading5</h5>
+<h6 id="heading6">Heading6</h6>
+
+<h2 id="인용">인용</h2>
+
+<p>’&gt;’를 사용하여 인용문을 나타낸다. 한 문장에 하나의 ‘&gt;’만 있으면 된다. 여러 문단을 연결하고 싶을 때는 빈줄에도 ‘&gt;’를 해준다.</p>
+
+<blockquote>
+  <p>Change your thoughts and you change your world. - Norman Vincent Peale</p>
+</blockquote>
+
+<blockquote>
+  <p>Those who realize their folly are not true fools. - Zhuangzi</p>
+
+  <p>Life is too important to be taken seriously. - Oscar Wilde</p>
+</blockquote>
+
+<h3 id="강조">강조</h3>
+
+<p><strong>굵게하기1</strong> <strong>굵게하기2</strong> : <code class="language-plaintext highlighter-rouge">**굵게하기1**</code> <code class="language-plaintext highlighter-rouge">__굵게하기2__</code></p>
+
+<p><em>기울이기</em>1 <em>기울이기2</em>  : <code class="language-plaintext highlighter-rouge">*기울이기1*</code> <code class="language-plaintext highlighter-rouge">_기울이기2_</code></p>
+
+<p><strong>굵은데 <em>기울여</em>도 보기</strong> :  ` <strong>굵은데 <em>기울여</em>도 보기</strong> `</p>
+
+<p><strong>굵은데 _기울여_도 보기</strong>: ` <strong>굵은데 _기울여_도 보기</strong>:`</p>
+
+<p><em>기울었는데 <strong>여기만</strong> 굵어요</em> : <code class="language-plaintext highlighter-rouge">*기울었는데 **여기만** 굵어요*</code></p>
+
+<p><em>기울었는데 <strong>여기만</strong> 굵어요</em> : <code class="language-plaintext highlighter-rouge">*기울었는데 __여기만__ 굵어요*</code></p>
+
+<p>‘*’ 과 ‘/’ 는 같다.</p>
+
+<h3 id="취소선">취소선</h3>
+
+<p><del>취소하기</del> : <code class="language-plaintext highlighter-rouge">~~취소하기~~</code></p>
+
+<h3 id="목록">목록</h3>
+
+<ul>
+  <li>
+    <p>순서없는 목록1 : <code class="language-plaintext highlighter-rouge">* 순서없는 목록1 </code></p>
+  </li>
+  <li>
+    <p>순서없는 목록2 : <code class="language-plaintext highlighter-rouge">- 순서없는 목록1 </code></p>
+  </li>
+</ul>
+
+<p>‘*‘과 ‘-‘의 역할이 같다.</p>
+
+<ol>
+  <li>첫번째
+    <ol>
+      <li>TAB으로 들여서 쓰기
+        <ol>
+          <li>얼마나
+            <ul>
+              <li>순서없이도 가능
+                <ul>
+                  <li>합니다.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>많이
+            <ol>
+              <li>할 수 있을까?
+                <ol>
+                  <li>무한대라고 함</li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li>SHIFT TAB 으로 내어쓰기도 할 수 있음</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="todo-list">TODO list</h3>
+
+<ul class="task-list">
+  <li class="task-list-item">
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />체크박스 만들기 : <code class="language-plaintext highlighter-rouge">- [ ] 체크박스 만들기</code> <code class="language-plaintext highlighter-rouge">-Space[Space]Space'Context'</code> 형식임</p>
+  </li>
+  <li class="task-list-item">
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />체크된 박스 만들기 : <code class="language-plaintext highlighter-rouge">- [x] </code></p>
+  </li>
+</ul>
+
+<h3 id="링크">링크</h3>
+
+<p><a href="url">링크이름</a> : <code class="language-plaintext highlighter-rouge">[링크이름](url)</code></p>
+
+<p><a href="###목록">목록</a> : <code class="language-plaintext highlighter-rouge">[목록](###목록)</code> 이러한 링크도 가능한 듯</p>
+
+<p><img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">!</code> 를 붙여서 image url로 이미지를 넣을 수 도 있다.</p>
+
+<h3 id="표">표</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>헤더1</th>
+      <th>헤더2</th>
+      <th style="text-align: left">왼정렬</th>
+      <th style="text-align: center">중정렬</th>
+      <th style="text-align: right">우정렬</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>내용1</td>
+      <td><strong>내용2</strong></td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: right">3</td>
+    </tr>
+    <tr>
+      <td><em>내용3</em></td>
+      <td>내용4</td>
+      <td style="text-align: left">4</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: right">6</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| 헤더1 | 헤더2 |왼정렬|중정렬|우정렬|
+|------|----|:-|:-:|-:|
+| 내용1 | **내용2** |1|2|3|
+| _내용3_ | 내용4 |4|5|6|
+</code></pre></div></div>
+
+<h3 id="코드-포맷">코드 포맷</h3>
+
+<p>수식</p>
+
+<p>UML</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#language" class="page__taxonomy-item" rel="tag">language</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#markdown" class="page__taxonomy-item" rel="tag">markdown</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#blogging" class="page__taxonomy-item" rel="tag">blogging</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-12-29T00:00:00+09:00">December 29, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Markdown+Exercise%20http%3A%2F%2Flocalhost%3A4000%2Fblogging%2FMarkdown_exercise%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblogging%2FMarkdown_exercise%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fblogging%2FMarkdown_exercise%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+            
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:yunchang.chae@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://chae-yc.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/chae-yc" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Yunchang Chae. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
