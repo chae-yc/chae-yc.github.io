@@ -2,7 +2,8 @@
 layout: archive
 title: "Sitemap"
 permalink: /sitemap/
-author_profile: false
+author_profile: true
+sitemap: false
 ---
 
 <h2>Pages</h2>
