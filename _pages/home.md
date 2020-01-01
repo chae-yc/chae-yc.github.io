@@ -3,33 +3,33 @@ layout: splash
 permalink: /
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/88x88.png
+  overlay_image: /assets/images/wallpaper.png
   actions:
-    - label: "<i class='fas fa-download'></i> Install now"
+    - label: "<i class='fas fa-download'></i> Look around now"
       url: "/"
 excerpt: ""
 feature_row:
-  - image_path: /assets/images/88x88.png
-    alt: "customizable"
-    title: "Super customizable"
-    excerpt: "Everything from the menus, sidebars, comments, and more can be configured or set with YAML Front Matter."
+  - image_path: /assets/images/evolution1.png
+    alt: "Undergraduate"
+    title: "Undergraduate"
+    excerpt: "Posts what I have studied in undergraduate."
     url: "/"
     btn_class: "btn--primary"
-    btn_label: "Learn more"
-  - image_path: /assets/images/88x88.png
-    alt: "fully responsive"
-    title: "Responsive layouts"
-    excerpt: "Built with HTML5 + CSS3. All layouts are fully responsive with helpers to augment your content."
+    btn_label: "Check it now"
+  - image_path: /assets/images/evolution2.png
+    alt: "Human"
+    title: "Human"
+    excerpt: "General technical blog posts."
     url: "/"
     btn_class: "btn--primary"
-    btn_label: "Learn more"
-  - image_path: /assets/images/88x88.png
-    alt: "100% free"
-    title: "100% free"
-    excerpt: "Free to use however you want under the MIT License. Clone it, fork it, customize it... whatever!"
+    btn_label: "Check it now"
+  - image_path: /assets/images/evolution3.png
+    alt: "Scientist"
+    title: "Scientist"
+    excerpt: "Posts to organize the content of studies in graduate school."
     url: "/"
     btn_class: "btn--primary"
-    btn_label: "Learn more"      
+    btn_label: "Check it now"
 ---
 
 {% include feature_row %}
