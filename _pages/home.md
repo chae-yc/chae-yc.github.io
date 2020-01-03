@@ -8,7 +8,7 @@ header:
   #   - label: "It's me"
   #     url: "/"
 excerpt: 
-  wants to make the world better with IT technology.<br />
+  IT technology.<br/>
   <small>I'm still hungry.</small>
 feature_row:
   - image_path: /assets/images/evolution1.png
