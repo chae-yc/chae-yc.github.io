@@ -1,19 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-02T00:12:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YLog</title><subtitle>Notes that I want to keep.</subtitle><author><name>Yunchang Chae</name></author><entry><title type="html">Markdown Exercise</title><link href="http://localhost:4000/blogging/Markdown_exercise/" rel="alternate" type="text/html" title="Markdown Exercise" /><published>2019-12-29T00:00:00+09:00</published><updated>2019-12-31T16:37:00+09:00</updated><id>http://localhost:4000/blogging/Markdown_exercise</id><content type="html" xml:base="http://localhost:4000/blogging/Markdown_exercise/">&lt;h1 id=&quot;마크다운-시작하기&quot;&gt;마크다운 시작하기&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-03T00:27:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YLog</title><subtitle>Notes that I want to keep.</subtitle><author><name>Yunchang Chae</name></author><entry><title type="html">Mac shortcuts</title><link href="http://localhost:4000/blogging/Mac_shortcuts/" rel="alternate" type="text/html" title="Mac shortcuts" /><published>2020-01-02T00:00:00+09:00</published><updated>2020-01-02T23:35:00+09:00</updated><id>http://localhost:4000/blogging/Mac_shortcuts</id><content type="html" xml:base="http://localhost:4000/blogging/Mac_shortcuts/">&lt;h2 id=&quot;command-key&quot;&gt;command key&lt;/h2&gt;
 
-&lt;h3 id=&quot;문단&quot;&gt;문단&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;cmd + tab –&amp;gt; Q = quit  H = hide&lt;/li&gt;
+  &lt;li&gt;cmd + ` –&amp;gt; 같은 앱에서 창 전환&lt;/li&gt;
+  &lt;li&gt;cmd 1,2,3,4 –&amp;gt; switch finder view mode&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;cmd + del –&amp;gt; 저장안함 버튼 클릭 (다운로드나 저장/저장안함 선택 화면일 시)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;cmd + file Drag –&amp;gt; 파일 정렬&lt;/li&gt;
+  &lt;li&gt;cmd + window Drag –&amp;gt; 가려진 창 이동하기&lt;/li&gt;
+  &lt;li&gt;cmd + text Drag –&amp;gt; 가려진 창에서 텍스트 긁어오기&lt;/li&gt;
+  &lt;li&gt;cmd + finder_bar or menu_bar or side_bar Drag –&amp;gt; 삭제&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;option-key&quot;&gt;option key&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;opt + file Drag –&amp;gt; 파일 복사&lt;/li&gt;
+  &lt;li&gt;opt + Dock_app Click –&amp;gt; 강제 종료 가능&lt;/li&gt;
+  &lt;li&gt;opt + wifi –&amp;gt; wifi information&lt;/li&gt;
+  &lt;li&gt;opt + bluetooth –&amp;gt; send, browse device&lt;/li&gt;
+  &lt;li&gt;opt + tab –&amp;gt; 웹페이지 링크 포커스&lt;/li&gt;
+  &lt;li&gt;opt + mission control –&amp;gt; 데스크탑 간편제거 가능&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;launchpad + opt –&amp;gt; 삭제 버튼 활성화&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;한글에서 opt 키 누르고 입력시 영어로 입력됨&lt;/li&gt;
+  &lt;li&gt;영어에서 opt 키 누르고 입력시 특수문자 입력됨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;command--option-key&quot;&gt;command + option key&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;cmd + opt + A –&amp;gt; 전체 선택 취소&lt;/li&gt;
+  &lt;li&gt;cmd + opt + H –&amp;gt; 작업 중인 창을 제외한 나머지 창을 감추기&lt;/li&gt;
+  &lt;li&gt;cmd + opt + W –&amp;gt; 작업 중인 창을 제외한 나머지 창을 끄기&lt;/li&gt;
+  &lt;li&gt;cmd + opt + D –&amp;gt; Dock toggle&lt;/li&gt;
+  &lt;li&gt;cmd + opt + i –&amp;gt; 종합 information&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;use-shift-key&quot;&gt;use shift key&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;cmd + shift + A=Application D=Desktop H=Home L=Download O=Document U=Utility&lt;/li&gt;
+  &lt;li&gt;cmd + shift + opt + S –&amp;gt; 다른 이름으로 저장&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Yunchang Chae</name></author><category term="mac" /><category term="shortcuts" /><summary type="html">command key</summary></entry><entry><title type="html">My Vim Settings</title><link href="http://localhost:4000/application/my_vim_settings/" rel="alternate" type="text/html" title="My Vim Settings" /><published>2020-01-02T00:00:00+09:00</published><updated>2020-01-02T01:21:00+09:00</updated><id>http://localhost:4000/application/my_vim_settings</id><content type="html" xml:base="http://localhost:4000/application/my_vim_settings/">&lt;p&gt;현재 맥에서 사용중인 vim 설정(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.vimrc&lt;/code&gt;)이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; nocompatible
+&lt;span class=&quot;k&quot;&gt;filetype&lt;/span&gt; off
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; rtp&lt;span class=&quot;p&quot;&gt;+=~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.vim/&lt;/span&gt;bundle/Vundle&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;vim&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; vundle#begin&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;'VundleVim/Vundle.vim'&lt;/span&gt; &quot;required
+Plugin &lt;span class=&quot;s1&quot;&gt;'tpope/vim-fugitive'&lt;/span&gt; &quot;required
+&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; vundle#&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;filetype&lt;/span&gt; plugin indent &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &quot; Put your non&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;Plugin stuff after this line
+
+Plugin &lt;span class=&quot;s1&quot;&gt;'nathanaelkane/vim-indent-guides'&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;'scrooloose/syntastic'&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot;Syntax&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; has&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;syntax&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    syntax &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; autoindent
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; cindent
+
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;nu&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; &quot; Tab 너비
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; shiftwidth&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; &quot; 자동 인덴트할 때 너비
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; expandtab
+
+&lt;span class=&quot;c&quot;&gt;&quot; 마지막으로 수정된 곳에 커서를 위치함&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;au&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;BufReadPost&lt;/span&gt; *
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; line&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;'\&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; line&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;'\&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;=&lt;/span&gt; line&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; exe &lt;span class=&quot;s2&quot;&gt;&quot;norm g`\&quot;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot; colorscheme Base2Tone_EveningDark&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;colorscheme 을 사용하고 싶으면 아래의 파일을 받아서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.vim/colors&lt;/code&gt; 에 저장한 후 colorscheme 앞에 있는 주석(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;&lt;/code&gt;)을 해제한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/atelierbram/Base2Tone-vim/blob/master/autoload/airline/themes/Base2Tone_EveningDark.vim&quot;&gt;Base2Tone Git /Theme&lt;/a&gt;&lt;/p&gt;</content><author><name>Yunchang Chae</name></author><category term="vim" /><category term="settings" /><summary type="html">현재 맥에서 사용중인 vim 설정(~/.vimrc)이다.</summary></entry><entry><title type="html">Markdown Exercise</title><link href="http://localhost:4000/blogging/Markdown_exercise/" rel="alternate" type="text/html" title="Markdown Exercise" /><published>2020-01-01T00:00:00+09:00</published><updated>2020-01-02T00:00:00+09:00</updated><id>http://localhost:4000/blogging/Markdown_exercise</id><content type="html" xml:base="http://localhost:4000/blogging/Markdown_exercise/">&lt;h1 id=&quot;마크다운-시작하기&quot;&gt;마크다운 시작하기&lt;/h1&gt;
+
+&lt;h2 id=&quot;문단&quot;&gt;문단&lt;/h2&gt;
 
 &lt;p&gt;여러 개의 빈줄이 있을 경우에도 마크다운에서는 하나의 빈줄로만 인식한다.&lt;/p&gt;
 
-&lt;h3 id=&quot;제목&quot;&gt;제목&lt;/h3&gt;
+&lt;h2 id=&quot;제목&quot;&gt;제목&lt;/h2&gt;
 
 &lt;p&gt;’#’의 갯수로 제목의 크기를 지정할 수 있다. 6개까지 사용가능하며 ‘#’뒤에는 공백이 하나 필요하다.&lt;/p&gt;
 
-&lt;h1 id=&quot;heading1&quot;&gt;Heading1&lt;/h1&gt;
-&lt;h2 id=&quot;heading2&quot;&gt;Heading2&lt;/h2&gt;
-&lt;h3 id=&quot;heading3&quot;&gt;Heading3&lt;/h3&gt;
-&lt;h4 id=&quot;heading4&quot;&gt;Heading4&lt;/h4&gt;
-&lt;h5 id=&quot;heading5&quot;&gt;Heading5&lt;/h5&gt;
-&lt;h6 id=&quot;heading6&quot;&gt;Heading6&lt;/h6&gt;
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gh&quot;&gt;# Heading1&lt;/span&gt;
+&lt;span class=&quot;gu&quot;&gt;## Heading2&lt;/span&gt;
+&lt;span class=&quot;gu&quot;&gt;### Heading3&lt;/span&gt;
+&lt;span class=&quot;gu&quot;&gt;#### Heading4&lt;/span&gt;
+&lt;span class=&quot;gu&quot;&gt;##### Heading5&lt;/span&gt;
+&lt;span class=&quot;gu&quot;&gt;###### Heading6&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;인용&quot;&gt;인용&lt;/h2&gt;
 
@@ -29,7 +115,7 @@
   &lt;p&gt;Life is too important to be taken seriously. - Oscar Wilde&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;강조&quot;&gt;강조&lt;/h3&gt;
+&lt;h2 id=&quot;강조&quot;&gt;강조&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;굵게하기1&lt;/strong&gt; &lt;strong&gt;굵게하기2&lt;/strong&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;**굵게하기1**&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__굵게하기2__&lt;/code&gt;&lt;/p&gt;
 
@@ -45,11 +131,11 @@
 
 &lt;p&gt;‘*’ 과 ‘/’ 는 같다.&lt;/p&gt;
 
-&lt;h3 id=&quot;취소선&quot;&gt;취소선&lt;/h3&gt;
+&lt;h2 id=&quot;취소선&quot;&gt;취소선&lt;/h2&gt;
 
 &lt;p&gt;&lt;del&gt;취소하기&lt;/del&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~~취소하기~~&lt;/code&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;목록&quot;&gt;목록&lt;/h3&gt;
+&lt;h2 id=&quot;목록&quot;&gt;목록&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -92,7 +178,7 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;todo-list&quot;&gt;TODO list&lt;/h3&gt;
+&lt;h2 id=&quot;todo-list&quot;&gt;TODO list&lt;/h2&gt;
 
 &lt;ul class=&quot;task-list&quot;&gt;
   &lt;li class=&quot;task-list-item&quot;&gt;
@@ -103,11 +189,11 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;링크&quot;&gt;링크&lt;/h3&gt;
+&lt;h2 id=&quot;링크&quot;&gt;링크&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;url&quot;&gt;링크이름&lt;/a&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[링크이름](url)&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;###목록&quot;&gt;목록&lt;/a&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[목록](###목록)&lt;/code&gt; 이러한 링크도 가능한 듯&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;###목록&quot;&gt;목록&lt;/a&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[목록](###목록)&lt;/code&gt; 이러한 링크도 가능하다&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -115,7 +201,7 @@
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;!&lt;/code&gt; 를 붙여서 image url로 이미지를 넣을 수 도 있다.&lt;/p&gt;
 
-&lt;h3 id=&quot;표&quot;&gt;표&lt;/h3&gt;
+&lt;h2 id=&quot;표&quot;&gt;표&lt;/h2&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -145,14 +231,102 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;| 헤더1 | 헤더2 |왼정렬|중정렬|우정렬|
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;| 헤더1 | 헤더2 |왼정렬|중정렬|우정렬|
 |------|----|:-|:-:|-:|
-| 내용1 | **내용2** |1|2|3|
+| 내용1 | &lt;span class=&quot;gs&quot;&gt;**내용2**&lt;/span&gt; |1|2|3|
 | _내용3_ | 내용4 |4|5|6|
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;코드-포맷&quot;&gt;코드 포맷&lt;/h3&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
 
-&lt;p&gt;수식&lt;/p&gt;
+&lt;h3 id=&quot;in-line&quot;&gt;In-line&lt;/h3&gt;
 
-&lt;p&gt;UML&lt;/p&gt;</content><author><name>Yunchang Chae</name></author><category term="markdown" /><category term="language" /><summary type="html">마크다운 시작하기</summary></entry></feed>
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;`&lt;/code&gt;를 글의 양 옆에 묶으면 한 줄 단위의 코드 를 작성할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;코드 내부에는 마크다운 문법이 적용되지 않고 plain text로 보이게된다.
+아래의 코드를 보면 굵기와 기울기가 적용되지 않고 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code **code** __code__ _code_ *code*&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;` code **code** __code__ _code_ *code* `&lt;/code&gt; 이렇게 작성하면 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;multi-line&quot;&gt;Multi-line&lt;/h3&gt;
+
+&lt;p&gt;멀티라인 코드를 작성하고 싶으면 ‘```’
+혹은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~~~&lt;/code&gt; 를 코드 블록 시작과 끝에 사용한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;count: &lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```javascript
+let cnt = 0;
+console.log(&quot;count: &quot;+ cnt);
+```
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;’```‘와 같이 여러 줄의 코드를 작성할 시 language를 지정하여 syntax highlighing 기능을 사용 할 수 있다.
+위에 작성한 예시에는 javascript를 사용한다고 지정해주었다.&lt;/p&gt;
+
+&lt;h3 id=&quot;language-list&quot;&gt;Language list&lt;/h3&gt;
+&lt;p&gt;다음은 지원하는 language의 목록이다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;actionscript3&lt;/li&gt;
+  &lt;li&gt;apache&lt;/li&gt;
+  &lt;li&gt;applescript&lt;/li&gt;
+  &lt;li&gt;asp&lt;/li&gt;
+  &lt;li&gt;brainfuck&lt;/li&gt;
+  &lt;li&gt;c&lt;/li&gt;
+  &lt;li&gt;cfm&lt;/li&gt;
+  &lt;li&gt;clojure&lt;/li&gt;
+  &lt;li&gt;cmake&lt;/li&gt;
+  &lt;li&gt;coffee-script, coffeescript, coffee&lt;/li&gt;
+  &lt;li&gt;cpp - C++&lt;/li&gt;
+  &lt;li&gt;cs&lt;/li&gt;
+  &lt;li&gt;csharp&lt;/li&gt;
+  &lt;li&gt;css&lt;/li&gt;
+  &lt;li&gt;csv&lt;/li&gt;
+  &lt;li&gt;bash&lt;/li&gt;
+  &lt;li&gt;diff&lt;/li&gt;
+  &lt;li&gt;elixir&lt;/li&gt;
+  &lt;li&gt;erb - HTML + Embedded Ruby&lt;/li&gt;
+  &lt;li&gt;go&lt;/li&gt;
+  &lt;li&gt;haml&lt;/li&gt;
+  &lt;li&gt;http&lt;/li&gt;
+  &lt;li&gt;java&lt;/li&gt;
+  &lt;li&gt;javascript&lt;/li&gt;
+  &lt;li&gt;json&lt;/li&gt;
+  &lt;li&gt;jsx&lt;/li&gt;
+  &lt;li&gt;less&lt;/li&gt;
+  &lt;li&gt;lolcode&lt;/li&gt;
+  &lt;li&gt;make - Makefile&lt;/li&gt;
+  &lt;li&gt;markdown&lt;/li&gt;
+  &lt;li&gt;matlab&lt;/li&gt;
+  &lt;li&gt;nginx&lt;/li&gt;
+  &lt;li&gt;objectivec&lt;/li&gt;
+  &lt;li&gt;pascal&lt;/li&gt;
+  &lt;li&gt;PHP&lt;/li&gt;
+  &lt;li&gt;Perl&lt;/li&gt;
+  &lt;li&gt;python&lt;/li&gt;
+  &lt;li&gt;profile - python profiler output&lt;/li&gt;
+  &lt;li&gt;rust&lt;/li&gt;
+  &lt;li&gt;salt, saltstate - Salt&lt;/li&gt;
+  &lt;li&gt;shell, sh, zsh, bash - Shell scripting&lt;/li&gt;
+  &lt;li&gt;sql&lt;/li&gt;
+  &lt;li&gt;scss&lt;/li&gt;
+  &lt;li&gt;sql&lt;/li&gt;
+  &lt;li&gt;svg&lt;/li&gt;
+  &lt;li&gt;swift&lt;/li&gt;
+  &lt;li&gt;rb, jruby, ruby - Ruby&lt;/li&gt;
+  &lt;li&gt;smalltalk&lt;/li&gt;
+  &lt;li&gt;vim, viml - Vim Script&lt;/li&gt;
+  &lt;li&gt;volt&lt;/li&gt;
+  &lt;li&gt;vhdl&lt;/li&gt;
+  &lt;li&gt;vue&lt;/li&gt;
+  &lt;li&gt;xml - XML and also used for HTML with inline CSS and Javascript&lt;/li&gt;
+  &lt;li&gt;yaml&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;수식-uml&quot;&gt;수식, UML&lt;/h2&gt;
+
+&lt;p&gt;당분간은 사용할 일이 없어서 추후에 필요할 때 정리하도록 할 것임&lt;/p&gt;</content><author><name>Yunchang Chae</name></author><category term="markdown" /><category term="language" /><summary type="html">마크다운 시작하기</summary></entry></feed>

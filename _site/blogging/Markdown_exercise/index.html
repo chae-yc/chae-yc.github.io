@@ -31,11 +31,11 @@
 
 
 
-  <meta property="article:published_time" content="2019-12-29T00:00:00+09:00">
+  <meta property="article:published_time" content="2020-01-01T00:00:00+09:00">
 
 
 
-  <meta property="article:modified_time" content="2019-12-31T16:37:00+09:00">
+  <meta property="article:modified_time" content="2020-01-02T00:00:00+09:00">
 
 
 
@@ -171,8 +171,8 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Markdown Exercise">
     <meta itemprop="description" content="마크다운 시작하기">
-    <meta itemprop="datePublished" content="2019-12-29T00:00:00+09:00">
-    <meta itemprop="dateModified" content="2019-12-31T16:37:00+09:00">
+    <meta itemprop="datePublished" content="2020-01-01T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2020-01-02T00:00:00+09:00">
 
     <div class="page__inner-wrap">
       
@@ -185,7 +185,7 @@
 
 
 
-  1 minute read
+  2 minute read
 
 </p>
           
@@ -199,38 +199,24 @@
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
               <ul class="toc__menu">
   <li><a href="#마크다운-시작하기">마크다운 시작하기</a>
-      - {:.} <a href="#문단">문단</a>
-      - {:.} <a href="#제목">제목</a></li>
-  <li><a href="#heading1">Heading1</a>
     <ul>
-      <li><a href="#heading2">Heading2</a>
+      <li><a href="#문단">문단</a></li>
+      <li><a href="#제목">제목</a></li>
+      <li><a href="#인용">인용</a></li>
+      <li><a href="#강조">강조</a></li>
+      <li><a href="#취소선">취소선</a></li>
+      <li><a href="#목록">목록</a></li>
+      <li><a href="#todo-list">TODO list</a></li>
+      <li><a href="#링크">링크</a></li>
+      <li><a href="#표">표</a></li>
+      <li><a href="#code">Code</a>
         <ul>
-          <li><a href="#heading3">Heading3</a>
-            <ul>
-              <li><a href="#heading4">Heading4</a>
-                <ul>
-                  <li><a href="#heading5">Heading5</a>
-                    <ul>
-                      <li><a href="#heading6">Heading6</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+          <li><a href="#in-line">In-line</a></li>
+          <li><a href="#multi-line">Multi-line</a></li>
+          <li><a href="#language-list">Language list</a></li>
         </ul>
       </li>
-      <li><a href="#인용">인용</a>
-        <ul>
-          <li><a href="#강조">강조</a></li>
-          <li><a href="#취소선">취소선</a></li>
-          <li><a href="#목록">목록</a></li>
-          <li><a href="#todo-list">TODO list</a></li>
-          <li><a href="#링크">링크</a></li>
-          <li><a href="#표">표</a></li>
-          <li><a href="#코드-포맷">코드 포맷</a></li>
-        </ul>
-      </li>
+      <li><a href="#수식-uml">수식, UML</a></li>
     </ul>
   </li>
 </ul>
@@ -239,20 +225,21 @@
         
         <h1 id="마크다운-시작하기">마크다운 시작하기</h1>
 
-<h3 id="문단">문단</h3>
+<h2 id="문단">문단</h2>
 
 <p>여러 개의 빈줄이 있을 경우에도 마크다운에서는 하나의 빈줄로만 인식한다.</p>
 
-<h3 id="제목">제목</h3>
+<h2 id="제목">제목</h2>
 
 <p>’#’의 갯수로 제목의 크기를 지정할 수 있다. 6개까지 사용가능하며 ‘#’뒤에는 공백이 하나 필요하다.</p>
 
-<h1 id="heading1">Heading1</h1>
-<h2 id="heading2">Heading2</h2>
-<h3 id="heading3">Heading3</h3>
-<h4 id="heading4">Heading4</h4>
-<h5 id="heading5">Heading5</h5>
-<h6 id="heading6">Heading6</h6>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># Heading1</span>
+<span class="gu">## Heading2</span>
+<span class="gu">### Heading3</span>
+<span class="gu">#### Heading4</span>
+<span class="gu">##### Heading5</span>
+<span class="gu">###### Heading6</span>
+</code></pre></div></div>
 
 <h2 id="인용">인용</h2>
 
@@ -268,7 +255,7 @@
   <p>Life is too important to be taken seriously. - Oscar Wilde</p>
 </blockquote>
 
-<h3 id="강조">강조</h3>
+<h2 id="강조">강조</h2>
 
 <p><strong>굵게하기1</strong> <strong>굵게하기2</strong> : <code class="language-plaintext highlighter-rouge">**굵게하기1**</code> <code class="language-plaintext highlighter-rouge">__굵게하기2__</code></p>
 
@@ -284,11 +271,11 @@
 
 <p>‘*’ 과 ‘/’ 는 같다.</p>
 
-<h3 id="취소선">취소선</h3>
+<h2 id="취소선">취소선</h2>
 
 <p><del>취소하기</del> : <code class="language-plaintext highlighter-rouge">~~취소하기~~</code></p>
 
-<h3 id="목록">목록</h3>
+<h2 id="목록">목록</h2>
 
 <ul>
   <li>
@@ -331,7 +318,7 @@
   </li>
 </ol>
 
-<h3 id="todo-list">TODO list</h3>
+<h2 id="todo-list">TODO list</h2>
 
 <ul class="task-list">
   <li class="task-list-item">
@@ -342,11 +329,11 @@
   </li>
 </ul>
 
-<h3 id="링크">링크</h3>
+<h2 id="링크">링크</h2>
 
 <p><a href="url">링크이름</a> : <code class="language-plaintext highlighter-rouge">[링크이름](url)</code></p>
 
-<p><a href="###목록">목록</a> : <code class="language-plaintext highlighter-rouge">[목록](###목록)</code> 이러한 링크도 가능한 듯</p>
+<p><a href="###목록">목록</a> : <code class="language-plaintext highlighter-rouge">[목록](###목록)</code> 이러한 링크도 가능하다</p>
 
 <p><img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="" /></p>
 
@@ -354,7 +341,7 @@
 
 <p><code class="language-plaintext highlighter-rouge">!</code> 를 붙여서 image url로 이미지를 넣을 수 도 있다.</p>
 
-<h3 id="표">표</h3>
+<h2 id="표">표</h2>
 
 <table>
   <thead>
@@ -384,18 +371,105 @@
   </tbody>
 </table>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| 헤더1 | 헤더2 |왼정렬|중정렬|우정렬|
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| 헤더1 | 헤더2 |왼정렬|중정렬|우정렬|
 |------|----|:-|:-:|-:|
-| 내용1 | **내용2** |1|2|3|
+| 내용1 | <span class="gs">**내용2**</span> |1|2|3|
 | _내용3_ | 내용4 |4|5|6|
 </code></pre></div></div>
 
-<h3 id="코드-포맷">코드 포맷</h3>
+<h2 id="code">Code</h2>
 
-<p>수식</p>
+<h3 id="in-line">In-line</h3>
 
-<p>UML</p>
+<p><code class="language-plaintext highlighter-rouge">`</code>를 글의 양 옆에 묶으면 한 줄 단위의 코드 를 작성할 수 있다.</p>
 
+<p>코드 내부에는 마크다운 문법이 적용되지 않고 plain text로 보이게된다.
+아래의 코드를 보면 굵기와 기울기가 적용되지 않고 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">code **code** __code__ _code_ *code*</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">` code **code** __code__ _code_ *code* `</code> 이렇게 작성하면 된다.</p>
+
+<h3 id="multi-line">Multi-line</h3>
+
+<p>멀티라인 코드를 작성하고 싶으면 ‘```’
+혹은 <code class="language-plaintext highlighter-rouge">~~~</code> 를 코드 블록 시작과 끝에 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">count: </span><span class="dl">"</span><span class="o">+</span> <span class="nx">cnt</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```javascript
+let cnt = 0;
+console.log("count: "+ cnt);
+```
+</code></pre></div></div>
+
+<p>’```‘와 같이 여러 줄의 코드를 작성할 시 language를 지정하여 syntax highlighing 기능을 사용 할 수 있다.
+위에 작성한 예시에는 javascript를 사용한다고 지정해주었다.</p>
+
+<h3 id="language-list">Language list</h3>
+<p>다음은 지원하는 language의 목록이다.</p>
+<ul>
+  <li>actionscript3</li>
+  <li>apache</li>
+  <li>applescript</li>
+  <li>asp</li>
+  <li>brainfuck</li>
+  <li>c</li>
+  <li>cfm</li>
+  <li>clojure</li>
+  <li>cmake</li>
+  <li>coffee-script, coffeescript, coffee</li>
+  <li>cpp - C++</li>
+  <li>cs</li>
+  <li>csharp</li>
+  <li>css</li>
+  <li>csv</li>
+  <li>bash</li>
+  <li>diff</li>
+  <li>elixir</li>
+  <li>erb - HTML + Embedded Ruby</li>
+  <li>go</li>
+  <li>haml</li>
+  <li>http</li>
+  <li>java</li>
+  <li>javascript</li>
+  <li>json</li>
+  <li>jsx</li>
+  <li>less</li>
+  <li>lolcode</li>
+  <li>make - Makefile</li>
+  <li>markdown</li>
+  <li>matlab</li>
+  <li>nginx</li>
+  <li>objectivec</li>
+  <li>pascal</li>
+  <li>PHP</li>
+  <li>Perl</li>
+  <li>python</li>
+  <li>profile - python profiler output</li>
+  <li>rust</li>
+  <li>salt, saltstate - Salt</li>
+  <li>shell, sh, zsh, bash - Shell scripting</li>
+  <li>sql</li>
+  <li>scss</li>
+  <li>sql</li>
+  <li>svg</li>
+  <li>swift</li>
+  <li>rb, jruby, ruby - Ruby</li>
+  <li>smalltalk</li>
+  <li>vim, viml - Vim Script</li>
+  <li>volt</li>
+  <li>vhdl</li>
+  <li>vue</li>
+  <li>xml - XML and also used for HTML with inline CSS and Javascript</li>
+  <li>yaml</li>
+</ul>
+
+<h2 id="수식-uml">수식, UML</h2>
+
+<p>당분간은 사용할 일이 없어서 추후에 필요할 때 정리하도록 할 것임</p>
 
         
       </section>
@@ -448,7 +522,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-12-31">December 31, 2019</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-01-02">January 02, 2020</time></p>
         
       </footer>
 
@@ -466,6 +540,16 @@
 
 
       
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/blogging/Mac_shortcuts/" class="pagination--pager" title="Mac shortcuts
+">Next</a>
+    
+  </nav>
+
     </div>
 
     
@@ -478,9 +562,68 @@
       <div class="grid__wrapper">
         
           
-            
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/application/my_vim_settings/" rel="permalink">My Vim Settings
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">현재 맥에서 사용중인 vim 설정(~/.vimrc)이다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blogging/Mac_shortcuts/" rel="permalink">Mac shortcuts
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">command key
+
+</p>
+  </article>
+</div>
+
+        
       </div>
     </div>
+  
   
 </div>
 

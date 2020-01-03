@@ -5,27 +5,29 @@ categories:
 tags:
   - markdown
   - language
-last_modified_at: 2019-12-31T16:37:00+09:00
+last_modified_at: 2020-01-02T00:00:00+09:00
 toc: true
 toc_sticky: true
 ---
 
 # 마크다운 시작하기
 
-### 문단
+## 문단
 
 여러 개의 빈줄이 있을 경우에도 마크다운에서는 하나의 빈줄로만 인식한다.
 
-### 제목
+## 제목
 
 '#'의 갯수로 제목의 크기를 지정할 수 있다. 6개까지 사용가능하며 '#'뒤에는 공백이 하나 필요하다.
 
+```markdown
 # Heading1
 ## Heading2
 ### Heading3
 #### Heading4
 ##### Heading5
 ###### Heading6
+```
 
 ## 인용
 
@@ -41,7 +43,7 @@ toc_sticky: true
 >
 > Life is too important to be taken seriously. - Oscar Wilde
 
-### 강조
+## 강조
 
 **굵게하기1** __굵게하기2__ : `**굵게하기1**` `__굵게하기2__`
 
@@ -57,11 +59,11 @@ toc_sticky: true
 
 '*' 과 '/' 는 같다.
 
-### 취소선
+## 취소선
 
 ~~취소하기~~ : `~~취소하기~~`
 
-### 목록
+## 목록
 
 * 순서없는 목록1 : `* 순서없는 목록1 `
 
@@ -79,23 +81,17 @@ toc_sticky: true
             1. 무한대라고 함
       3. SHIFT TAB 으로 내어쓰기도 할 수 있음
 
-
-
-### TODO list
+## TODO list
 
 - [ ] 체크박스 만들기 : `- [ ] 체크박스 만들기` `-Space[Space]Space'Context'` 형식임
 
 - [x] 체크된 박스 만들기 : `- [x] `
 
- 
-
-### 링크
+## 링크
 
 [링크이름](url) : `[링크이름](url)` 
 
-[목록](###목록) : `[목록](###목록)` 이러한 링크도 가능한 듯
-
-
+[목록](###목록) : `[목록](###목록)` 이러한 링크도 가능하다
 
 ![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
 
@@ -103,25 +99,110 @@ toc_sticky: true
 
 `!` 를 붙여서 image url로 이미지를 넣을 수 도 있다.
 
-### 표
+## 표
 
 | 헤더1   | 헤더2     | 왼정렬 | 중정렬 | 우정렬 |
 | ------- | --------- | :----- | :----: | -----: |
 | 내용1   | **내용2** | 1      |   2    |      3 |
 | _내용3_ | 내용4     | 4      |   5    |      6 |
 
-```
+```markdown
 | 헤더1 | 헤더2 |왼정렬|중정렬|우정렬|
 |------|----|:-|:-:|-:|
 | 내용1 | **내용2** |1|2|3|
 | _내용3_ | 내용4 |4|5|6|
 ```
 
-### 코드 포맷
+## Code
 
+### In-line
 
+`` ` ``를 글의 양 옆에 묶으면 한 줄 단위의 코드 를 작성할 수 있다.
 
-수식
+코드 내부에는 마크다운 문법이 적용되지 않고 plain text로 보이게된다.
+아래의 코드를 보면 굵기와 기울기가 적용되지 않고 있다.
 
-UML
+`code **code** __code__ _code_ *code*`
 
+`` ` code **code** __code__ _code_ *code* ` `` 이렇게 작성하면 된다.
+
+### Multi-line
+
+멀티라인 코드를 작성하고 싶으면 '```'
+혹은 `~~~` 를 코드 블록 시작과 끝에 사용한다.
+
+```javascript
+let cnt = 0;
+console.log("count: "+ cnt);
+```
+
+~~~
+```javascript
+let cnt = 0;
+console.log("count: "+ cnt);
+```
+~~~
+
+'```'와 같이 여러 줄의 코드를 작성할 시 language를 지정하여 syntax highlighing 기능을 사용 할 수 있다.
+위에 작성한 예시에는 javascript를 사용한다고 지정해주었다.
+
+### Language list
+다음은 지원하는 language의 목록이다.
+- actionscript3
+- apache
+- applescript
+- asp
+- brainfuck
+- c
+- cfm
+- clojure
+- cmake
+- coffee-script, coffeescript, coffee
+- cpp - C++
+- cs
+- csharp
+- css
+- csv
+- bash
+- diff
+- elixir
+- erb - HTML + Embedded Ruby
+- go
+- haml
+- http
+- java
+- javascript
+- json
+- jsx
+- less
+- lolcode
+- make - Makefile
+- markdown
+- matlab
+- nginx
+- objectivec
+- pascal
+- PHP
+- Perl
+- python
+- profile - python profiler output
+- rust
+- salt, saltstate - Salt
+- shell, sh, zsh, bash - Shell scripting
+- sql
+- scss
+- sql
+- svg
+- swift
+- rb, jruby, ruby - Ruby
+- smalltalk
+- vim, viml - Vim Script
+- volt
+- vhdl
+- vue
+- xml - XML and also used for HTML with inline CSS and Javascript
+- yaml
+
+## 수식, UML
+
+당분간은 사용할 일이 없어서 추후에 필요할 때 정리하도록 할 것임
