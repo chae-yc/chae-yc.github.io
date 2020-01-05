@@ -1,0 +1,100 @@
+I"
+<div class="feature__wrapper">
+
+  
+
+    
+
+    <div class="feature__item">
+      <div class="archive__item">
+        
+          <div class="archive__item-teaser">
+            <img src="/assets/images/evolution1.png" alt="Undergraduate" />
+            
+          </div>
+        
+
+        <div class="archive__item-body">
+          
+            <h2 class="archive__item-title">Undergraduate</h2>
+          
+
+          
+            <div class="archive__item-excerpt">
+              <p>Posts what I have studied in undergraduate.</p>
+
+            </div>
+          
+
+          
+            <p><a href="/categories/undergraduate/" class="btn btn--primary">Check it now</a></p>
+          
+        </div>
+      </div>
+    </div>
+  
+
+    
+
+    <div class="feature__item">
+      <div class="archive__item">
+        
+          <div class="archive__item-teaser">
+            <img src="/assets/images/evolution2.png" alt="Human" />
+            
+          </div>
+        
+
+        <div class="archive__item-body">
+          
+            <h2 class="archive__item-title">Human</h2>
+          
+
+          
+            <div class="archive__item-excerpt">
+              <p>General technical blog posts.</p>
+
+            </div>
+          
+
+          
+            <p><a href="/categories/human/" class="btn btn--primary">Check it now</a></p>
+          
+        </div>
+      </div>
+    </div>
+  
+
+    
+
+    <div class="feature__item">
+      <div class="archive__item">
+        
+          <div class="archive__item-teaser">
+            <img src="/assets/images/evolution3.png" alt="Scientist" />
+            
+          </div>
+        
+
+        <div class="archive__item-body">
+          
+            <h2 class="archive__item-title">Scientist</h2>
+          
+
+          
+            <div class="archive__item-excerpt">
+              <p>Posts to organize the studies in graduate school.</p>
+
+            </div>
+          
+
+          
+            <p><a href="/categories/scientist/" class="btn btn--primary">Check it now</a></p>
+          
+        </div>
+      </div>
+    </div>
+  
+
+</div>
+:ET

@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/blogging/Markdown_exercise/</loc>
+<loc>http://localhost:4000/blogging/human/Markdown_exercise/</loc>
 <lastmod>2020-01-02T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/blogging/Mac_shortcuts/</loc>
+<loc>http://localhost:4000/blogging/human/Mac_shortcuts/</loc>
 <lastmod>2020-01-02T23:35:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/application/my_vim_settings/</loc>
+<loc>http://localhost:4000/human/blogging/my_vim_settings/</loc>
 <lastmod>2020-01-02T01:21:00+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/scientist/paper_reading/A_Study_on_the_Security_Vulnerabilities_of_Container_Images/</loc>
+<lastmod>2020-01-05T19:21:00+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/scientist/paper_reading/Priolog_Mining-Important-Logs-via-Temporal-Analysis-and-Prioritization/</loc>
+<lastmod>2020-01-05T19:21:00+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about/</loc>

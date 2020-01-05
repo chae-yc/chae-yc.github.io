@@ -1,0 +1,25 @@
+I"p<p>본 글은
+<strong>Byungchul Tak &amp; Seorin Park &amp; Prabhakar Kudva, 2019. “Priolog: Mining Important Logs via Temporal Analysis and Prioritization,” Sustainability, MDPI, Open Access Journal, vol. 11(22), pages 1-17, November.</strong>
+를 읽고 개인적으로 정리한 글입니다.
+문제가 발생될 시 포스트를 삭제하도록 하겠습니다.</p>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>Log analytics(로그 분석기s)는 IT service들 운영을 관리하기 위해서 중요한 부분인데 소프트웨어가 복잡해지면서 많은 수의 로그 중에서 problem diagnosis를 위한 의미있는 데이터를 찾아내는 것이 힘들어지고 있다. 본 논문에서는 중요하고 연관성 높은 로그들의 집합으로 만들 수 있는 새로운 기술인 Priolog라는 기술을 소개한다.
+Priolog는 log template temporal analysis, log template frequency analysis, word frequency analysis의 조합을 통해서 분석해서 중요한 로그의 순위를 매겨준다.
+이 기술을 구현하여 popular한 OpenStack platform의 problem diagnosis task에 적용했다.
+분석 결과에 따르면 Priolog는 여러 시나리오에서 실패 원인에 대한 직접적인 힌트를 담고있는 중요한 로그를 효과적으로 찾을 수 있다.
+논문에서 기술의 개념, 디자인 및 실제 로그를 사용한 평가 결과를 보여준다.</p>
+
+<blockquote>
+  <p>Keywords: log analysis; problem diagnosis; temporal correlation; log template; hierarchical clustering</p>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<h2 id="의문점">의문점</h2>
+
+<ol>
+  <li></li>
+</ol>
+:ET

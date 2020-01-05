@@ -1,4 +1,576 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-03T00:27:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YLog</title><subtitle>Notes that I want to keep.</subtitle><author><name>Yunchang Chae</name></author><entry><title type="html">Mac shortcuts</title><link href="http://localhost:4000/blogging/Mac_shortcuts/" rel="alternate" type="text/html" title="Mac shortcuts" /><published>2020-01-02T00:00:00+09:00</published><updated>2020-01-02T23:35:00+09:00</updated><id>http://localhost:4000/blogging/Mac_shortcuts</id><content type="html" xml:base="http://localhost:4000/blogging/Mac_shortcuts/">&lt;h2 id=&quot;command-key&quot;&gt;command key&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-05T21:46:25+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">YLog</title><subtitle>Notes that I want to keep.</subtitle><author><name>Yunchang Chae</name></author><entry><title type="html">논문읽기 - Priolog: Mining Important Logs via Temporal Analysis and Prioritization</title><link href="http://localhost:4000/scientist/paper_reading/Priolog_Mining-Important-Logs-via-Temporal-Analysis-and-Prioritization/" rel="alternate" type="text/html" title="논문읽기 - Priolog: Mining Important Logs via Temporal Analysis and Prioritization" /><published>2020-01-05T00:00:00+09:00</published><updated>2020-01-05T19:21:00+09:00</updated><id>http://localhost:4000/scientist/paper_reading/Priolog_Mining%20Important%20Logs%20via%20Temporal%20Analysis%20and%20Prioritization</id><content type="html" xml:base="http://localhost:4000/scientist/paper_reading/Priolog_Mining-Important-Logs-via-Temporal-Analysis-and-Prioritization/">&lt;p&gt;본 글은
+&lt;strong&gt;Byungchul Tak &amp;amp; Seorin Park &amp;amp; Prabhakar Kudva, 2019. “Priolog: Mining Important Logs via Temporal Analysis and Prioritization,” Sustainability, MDPI, Open Access Journal, vol. 11(22), pages 1-17, November.&lt;/strong&gt;
+를 읽고 개인적으로 정리한 글입니다.
+문제가 발생될 시 포스트를 삭제하도록 하겠습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;abstract&quot;&gt;Abstract&lt;/h2&gt;
+
+&lt;p&gt;IT service들 운영을 관리하기 위해서 Log analytics는 중요한 부분이다.
+소프트웨어가 복잡해지면서 많은 수의 로그 중에서 problem diagnosis를 위한 의미있는 데이터를 찾아내는 것이 힘들어지고 있다.
+본 논문에서는 중요하고 연관성 높은 로그들의 집합으로 만들 수 있는 새로운 기술인 Priolog라는 기술을 소개한다.
+Priolog는 log template temporal analysis(시간에 따른 분석), log template frequency analysis, word frequency analysis의 조합을 통해서 분석해서 중요한 로그의 순위를 매겨준다.
+이 기술을 구현하여 popular한 OpenStack platform의 problem diagnosis task에 적용했다.
+분석 결과에 따르면 Priolog는 여러 시나리오에서 실패 원인에 대한 직접적인 힌트를 담고있는 중요한 로그를 효과적으로 찾을 수 있다.
+논문에서 기술의 개념, 디자인 및 실제 로그를 사용한 평가 결과를 보여준다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Keywords: log analysis; problem diagnosis; temporal correlation; log template; hierarchical clustering&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;1-introduction&quot;&gt;1. Introduction&lt;/h2&gt;
+
+&lt;p&gt;오늘날 IT 서비스 관리에는 로그 분석 기능이 반드시 필요하다.
+로그 메시지는 서비스의 상태 나 문제에 대한 직접적인 힌트로 사용될 수 있다.
+containerization [7], micro-service [8,9], serverless computing [10]의 예들 처럼 작은 컴포넌트들을 여러 개 사용하는 것으로 같은 software architecture paradigm이 바뀌고 있다.
+각 컴포넌트들이 각자의 log stream을 만들기 때문에 powerful search functions, text pattern matching, aggretation tools를 사용하더라도
+로그의 양과 복잡성 때문에 시스템 운영이 어려워진다.
+또한 클라우드 소프트웨어의 variety와 diversity로 인해 소프트웨어 및 시스템에서 생성 된 로그는 format, levels of detail, content가 매우 다른 경향이 있다.&lt;/p&gt;
+
+&lt;p&gt;로그를 사용한 searvice failure를 진단하기 위해 이 분야에서 다양한 접근 방식이 제안되어왔다.
+대부분의 연구는 failure가 발생한 후 anomalies 또는 outliers를 detect하는 데 중점을 둔다 [11–17].
+Log analysis은 data mining 그리고 AI 기술을 적용하기에 좋은 타겟이어왔다 [18].
+많은 기술이 이용 가능하지만, 이전의 연구에서는 클라우드 운영 환경에서 실제 중요성과 관련성을 드러내기보다는
+post-mortem analysis(사후 분석)을 통해 anomlies detect하거나
+모니터링된 데이터의 statistical analysis 만을 제공한다.
+따라서, 운영자가 면밀한 검사를 위해서는 관련된 log set로 신속하게 좁혀 나갈 수 있게 만들어야 한다는 과제가 여전히 남아있다.&lt;/p&gt;
+
+&lt;p&gt;게다가, 클라우드 환경들은 apllications, system software, patches, cluster provisioning, tenancy(차용: 여러 사용자가 동시에 사용) 그리고 configuration을 변경하는 것이 포함된다.
+통계적으로 드물게 발생하지만, anomalies나 outliers가 감지되더라도 실제 복잡한 cloud setting에서는 operational context에 맞춰서 정상적일 수도 있다.
+(예: 드물지만 정상적인 load changes, software update and pathces, routine configuration modifications, system utilization changes)
+복잡성을 없애기 위해 모니터링 도구 및 분석 기술의 사용이 증가함에 따라 잘못된 경보가 많이 발생하여 시스템 관리자가 파악하기가 힘들다.
+또한, 다양한 로그 유형은 개발자에게도 과제를 부여한다.
+따라서 clouad operational domain context에서 analytics 또는 AI identified statistical outliers가 필터링되거나 적어도 중요성에 따라 정렬되는 것이 핵심이다.
+이상적인 로그 기반 경고 시스템은 outliers를 예측하기 위해 outlier들 끼리의 correlation(상관 관계)를 검토할 뿐만 아니라 active system operation들 간의  temporal correlations(시간적 상관 관계)도 검토해야한다.
+(예: planned configuration changes, planned or unplanned maintenance schedules, load patterns, daily health check runs, white lists, etc.).
+이 oprational domain의 지식을 AI 및 analysis와 통합하고 연관시키는 것이 이상적인 목표이다.&lt;/p&gt;
+
+&lt;p&gt;이를 위해, Priolog를 설계하고 구현했다.
+high-level에서 Priolog는 3개의 독립적인 분석을 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Log template temporal corelation analysis
+    &lt;ul&gt;
+      &lt;li&gt;Outlying log message type을 찾기 위해, log message type의 시계열(time-series) 중에서 상관 관계를 검토한다. (시간 별 로그들의 상관 관계를 파악)
+        &lt;ul&gt;
+          &lt;li&gt;Log message type 또는 log templete은 contextual 값이나 현재 실행 상태를 반영하는 로그 메시지의 정적 문자열의 일부이다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Raw log stream을 각 log templete에 맞춰 하나씩 n 개의 시계열 값들로 변환한다. 그리고 temporal correlation의 강도에 따라 클러스터한다.&lt;/li&gt;
+      &lt;li&gt;직관적으로, 다른 클러스터와 제대로 클러스터되지 않은 log message type은 중요한 정보를 포함 할 가능성이 있는 abnormal behavior에 의해서 생긴 로그이다.&lt;/li&gt;
+      &lt;li&gt;이러한 log templete들이 log template temporal corelation analysis에서 높은 점수를 얻는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Log template frequency analysis
+    &lt;ul&gt;
+      &lt;li&gt;Log message type 별로 log message의 빈도를 보고 정상적인 빈도 수준에서 크게 벗어난 것을 식별한다.&lt;/li&gt;
+      &lt;li&gt;특정 log template에서 빈도가 갑자기 변경되는 경우 비정상적인 활동을 나타내는 것일 수 있다.&lt;/li&gt;
+      &lt;li&gt;이것을 조사하는 것이 근본 원인을 찾는 데 도움이 될 수 있다.&lt;/li&gt;
+      &lt;li&gt;마찬가지로 새로 나타나는 log template types (즉, 빈도가 0에서 일부 값으로 증가)에 중요한 정보가 포함될 수 있으므로 높은 점수를 부여하게 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Term frequency analysis (TF analysis)
+    &lt;ul&gt;
+      &lt;li&gt;Log mesage 내의 개별 단어의 희귀성을 고려하여 log message의 점수를 계산한다. Log message의 점수는 단어 하나가 가지는 희귀 점수를 따로 계산한 결과를 가지고 계산된다.&lt;/li&gt;
+      &lt;li&gt;그 이유는 다른 메시지에서 볼 수 없는 그 특정 단어가 abnoraml한 상태에 대한 직접적인 설명일 수가 있기 때문이다.&lt;/li&gt;
+      &lt;li&gt;이 단계는 이전 두 분석에서 유사한 점수를 가진 log template을 더 좁히기위한 것이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;최종 출력으로 Priolog는 세 개의 분석의 결과로부터 각 순위의 곱으로 정렬 된 log message type list을 생성한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;의문점&quot;&gt;의문점&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Yunchang Chae</name></author><category term="paper" /><category term="log" /><category term="analysis" /><category term="prioritization" /><summary type="html">본 글은 Byungchul Tak &amp;amp; Seorin Park &amp;amp; Prabhakar Kudva, 2019. “Priolog: Mining Important Logs via Temporal Analysis and Prioritization,” Sustainability, MDPI, Open Access Journal, vol. 11(22), pages 1-17, November. 를 읽고 개인적으로 정리한 글입니다. 문제가 발생될 시 포스트를 삭제하도록 하겠습니다.</summary></entry><entry><title type="html">논문읽기 - 컨테이너 이미지의 보안 취약성 조사 연구</title><link href="http://localhost:4000/scientist/paper_reading/A_Study_on_the_Security_Vulnerabilities_of_Container_Images/" rel="alternate" type="text/html" title="논문읽기 - 컨테이너 이미지의 보안 취약성 조사 연구" /><published>2020-01-03T00:00:00+09:00</published><updated>2020-01-05T19:21:00+09:00</updated><id>http://localhost:4000/scientist/paper_reading/A_Study_on_the_Security_Vulnerabilities_of_Container_Images</id><content type="html" xml:base="http://localhost:4000/scientist/paper_reading/A_Study_on_the_Security_Vulnerabilities_of_Container_Images/">&lt;p&gt;본 글은
+&lt;strong&gt;탁병철. (2018). 컨테이너 이미지의 보안 취약성 조사 연구. 한국차세대컴퓨팅학회 논문지, 14(3), 7-15.&lt;/strong&gt;
+를 읽고 개인적으로 정리한 글입니다.
+문제가 발생될 시 포스트를 삭제하도록 하겠습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1장-서론&quot;&gt;1장 서론&lt;/h2&gt;
+
+&lt;p&gt;컨테이너 기술의 활용이 사용의 편의성, 손쉬운 패키징(packaging), 배포(deploy)의 신속성(Time-to-market)의 장점으로 확산되고 있지만,
+다수의 사용자들이 이미지를 변경하여 배포할 수 있다는 특징 때문에 그 과정에서 취약점들이 생성된다면 그 또한 빠르게 확산될 수도 있다는 문제가 있다.
+이러한 위험성은 아래와 같은 다른 연구들에서도 보고된 적이 있다. [&lt;a href=&quot;#1&quot;&gt;1&lt;/a&gt;, &lt;a href=&quot;#2&quot;&gt;2&lt;/a&gt;, &lt;a href=&quot;#3&quot;&gt;3&lt;/a&gt;]
+문제가 인식되어서 여러 해결책들 또한 개발되고 있다.[&lt;a href=&quot;#9&quot;&gt;9&lt;/a&gt;, &lt;a href=&quot;#10&quot;&gt;10&lt;/a&gt;, &lt;a href=&quot;#11&quot;&gt;11&lt;/a&gt;, &lt;a href=&quot;#12&quot;&gt;12&lt;/a&gt;]
+하지만 아직도 컨테이너의 취약성에 대해서는 연구해야 할 측면이 많다. [&lt;a href=&quot;#2&quot;&gt;2&lt;/a&gt;, &lt;a href=&quot;#4&quot;&gt;4&lt;/a&gt;, &lt;a href=&quot;#7&quot;&gt;7&lt;/a&gt;, &lt;a href=&quot;#13&quot;&gt;13&lt;/a&gt;, &lt;a href=&quot;#14&quot;&gt;14&lt;/a&gt;]&lt;/p&gt;
+
+&lt;p&gt;다음과 같은 &lt;strong&gt;의문&lt;/strong&gt;들에 대한 &lt;strong&gt;해답&lt;/strong&gt;을 구해야한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;컨테이너 이미지 당 평균 취약점은 얼마나 되는 가?&lt;/li&gt;
+  &lt;li&gt;어떠한 취약점들이 가장 많이 발견되는가?&lt;/li&gt;
+  &lt;li&gt;취약점이 보완되기 까지는 얼마나 걸리는가?&lt;/li&gt;
+  &lt;li&gt;컨테이너를 사용하면 나의 시스템에 보안 측면에서 어떠 한 직간접적인 영향이 있는가?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;연구의 &lt;strong&gt;방향&lt;/strong&gt;은&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;약 만여 개의 도커 컨테이너 이미지를 분석하여서 컨테이너 이미지 스캐닝 도구인 ASC(Agentless-system-crawler)를 사용하여
+컨테이너 이미지의 OS정보, 파일들의 메타데이터, 설치된 패키지들의 목록과 버전 그리고 지정된 설정파일들의 내용 등을 추출한다.&lt;/li&gt;
+  &lt;li&gt;추출한 데이터들은 데이터베이스에 저장되어 분석 모듈에서 필요한 정보를 질의할 때에 사용된다.
+분석 모듈은 각 이미지 별 취약성 결과를 다시 데이터베이스에 저장한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;연구에서 &lt;strong&gt;분석한 정보&lt;/strong&gt;는&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;컨테이너 이미지들의 기본 OS 정보 통계 분류&lt;/li&gt;
+  &lt;li&gt;권장 보안 규칙(Compliance Rule)들의 부합 정도&lt;/li&gt;
+  &lt;li&gt;설치된 패키디들의 취약점(Package Vulnerability)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;결론&lt;/strong&gt;은&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;99%의 컨테이너 이미지가 평균적으로 다섯 개 이상의 권장 보안 규칙을 어기고 있다.&lt;/li&gt;
+  &lt;li&gt;92%의 이미지에서는 평균 10개 이상의 패키지 취약점들이 발견되었다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이 분석에 대한 결과와 해석을 &lt;strong&gt;본문&lt;/strong&gt;에서 설명한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2장: 컨테이너 이미지 분석을 수행하기 위하여 구성한 분석 플랫폼의 구조를 설명&lt;/li&gt;
+  &lt;li&gt;3장: OS 배포판 분포 분석, 권장 보안 규칙 부합성 분석, 패키지 취약점 분석 결과를 제시&lt;/li&gt;
+  &lt;li&gt;4장: 분석 결과에 대한 의미와 해석&lt;/li&gt;
+  &lt;li&gt;5장: 결론과 향후 계획&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2장-컨테이너-이미지-분석-플랫폼-구조&quot;&gt;2장 컨테이너 이미지 분석 플랫폼 구조&lt;/h2&gt;
+
+&lt;p&gt;컨테이너 이미지 보안 취약성 분석을 위한 플랫폼은
+총 5개의 컴포넌트(Imnage Name Extractor, Image Scanner, Compliance Rule Analyzer, Package Vulnerability Analyzer, Package Vulnerability Info Collector)와
+플랫폼의 구심점 역할을 하는 하나의 데이터베이스(Scanned Image Database - Elasticsearch[&lt;a href=&quot;#15&quot;&gt;15&lt;/a&gt;] 사용)로 구성되어 있다.&lt;/p&gt;
+
+&lt;p&gt;컴포넌트들 사이의 직접적인 통신이 없고 데이터베이스를 통한 간접적인 참조를 사용하기 때문에 &lt;strong&gt;새로운 컴포넌트를 추가, 확장 하는 것이 용이&lt;/strong&gt;하다.&lt;/p&gt;
+
+&lt;p&gt;각 컴포넌트들의 &lt;strong&gt;역할&lt;/strong&gt; 은&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Image Name Extractor
+    &lt;ul&gt;
+      &lt;li&gt;Docker hub에 HTTP query를 하여 인기도 순으로 정렬된 컨테이너 이미지 이름들이 있는 HTML page 들을 받아 차례로 파싱한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Image Scanner
+    &lt;ul&gt;
+      &lt;li&gt;데이터베이스에 새로운 이미지 이름이 저장되는 것을 감지하면
+해당 이미지를 Docker hub로 부터 pull 한 다음 ASC [&lt;a href=&quot;#5&quot;&gt;5&lt;/a&gt;, &lt;a href=&quot;#6&quot;&gt;6&lt;/a&gt;] 를 사용하여 스캔하고 결과를 데이터베이스에 저장한다.&lt;/li&gt;
+      &lt;li&gt;파일 목록, 파일 메타데이터, 패키지 리스트, 설정 파일 내용들, OS 정보 등이다&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Compliance Rule Analyzer(권장 보안 규칙 분석기)
+    &lt;ul&gt;
+      &lt;li&gt;대상 컨테이너 이미지가 보안 규칙들을 만족하는지를 검사하는 일을 담당한다.&lt;/li&gt;
+      &lt;li&gt;현재 정의된 권장 규칙들은 총 40이다. &lt;a href=&quot;#compliance-rules-table-권장-보안-규칙들&quot;&gt;Compliance Rules&lt;/a&gt; 크게 File/Directory 권한, SSH 서버 설정, 암호 설정 등의 사항들로 분류된다.&lt;/li&gt;
+      &lt;li&gt;다른 컴포넌트 들과 같이 새로운 데이터가 데이터베이스에 저장되었는지를 폴링 (Polling)을 통해 감지하여 분석을 진행하고 결과를 데이터베이스에 저장한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Package Vulnerability Analyzer(패키지 취약점 분석기)
+    &lt;ul&gt;
+      &lt;li&gt;패키지의 취약점을 분석하는 일을 담당한다. 현재 대상 이미지에 설치되어 있는 패키지들의 버전들을 현재 알려진 최신 버전의 패키지들과 비교하고, 만약 최신 버전이 아닐 경우 어떤 취약점이 있는지를 파악한다.
+        &lt;ul&gt;
+          &lt;li&gt;Package Vulnerability Info Collector가 데이터베이스에 저장한 값들을 참조한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;다른 컴포넌트와 동일한 방법으로 동작한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Package Vulnerability Info Collector
+    &lt;ul&gt;
+      &lt;li&gt;인터넷에서 현재 알려진 패키지들의 취약점들의 정보를 주기적으로 모아서 데이터베이스에 저장한다.&lt;/li&gt;
+      &lt;li&gt;패키지 취약점 정보는 리눅스 배포판(Distro) 마다 별도로 공시를 하며 현재 참조하는 배포판은 Debian, Ubuntu, 그리고 CentOS 이다.&lt;/li&gt;
+      &lt;li&gt;각 배포판별 취약점 목록의 웹 주소는 &lt;a href=&quot;#package-vulnerability-source&quot;&gt;Package Vunerability Source&lt;/a&gt; 에서 볼 수 있다.&lt;/li&gt;
+      &lt;li&gt;각 사이트 별로 별도의 텍스트 파싱 로직을 구현하여 게시판 형식으로 공시된 취약점 정보를 추출한다.&lt;/li&gt;
+      &lt;li&gt;추출하는 정보는 패키지명, CVE(Common Vulnerability Exposure ID), 취약점 설명, Fixed version 번호 이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3장-컨테이너-이미지-분석-결과&quot;&gt;3장 컨테이너 이미지 분석 결과&lt;/h2&gt;
+
+&lt;h3 id=&quot;31-os-분석&quot;&gt;3.1 OS 분석&lt;/h3&gt;
+
+&lt;p&gt;Docker Hub에서 배포되고 있는 이미지들의 base image로 사용되고 있는 리눅스 배포판들의 종류별 분포를 파악한다.
+전체적으로는 21개의 리눅스 배포판들이 컨테이너 이미지로 사용되고 있으며,
+아래의 &lt;strong&gt;&amp;lt;표 3&amp;gt;&lt;/strong&gt;는 연구 과정에서 발견된 리눅스 배포판들의 목록과 각각의 분포를 보여준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&amp;lt;표 3&amp;gt;&lt;/strong&gt; Linux Distro Distribution&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Rank&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Distro&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Count&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Percent&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Debian&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3189&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;31.7%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alpine&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2896&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;28.8%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ubuntu&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2634&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;26.1%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Centos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;766&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7.6%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Scratch&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;207&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2.1%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;buildroot&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;202&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2.0%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Fedora&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;67&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.7%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;8&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Opensuse&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;32&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.3%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;9&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Oracle Linux&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;20&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.2%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;10&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;arch&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;15&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.1%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;11&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;photon&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;11&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.1%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;12&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;rhel&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;11&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.1%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;13&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;amzn&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.1%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;14&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;sles&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.1%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;15&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Gentoo&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.0%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;16&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;clear-linux-os&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.0%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;17&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;slackware, linuxmint, mageia, euleros, kali appeared only once each&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;상위 세 개의 배포판인 Debian, Alpine, Ubuntu 비율의 총합이 87%이다.
+그 다음인 CentOS는 7% 이며 나머지 배포판 들은 사용이 미미하다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Scrtach는 리눅스 배포판의 종류가 아닌, 파일 시스템이 존재하지 않는 빈 컨테이너 이미지를 의미한다.
+컨테이너 이미지의 내부에는 리눅스 OS 관련 파일들이 반드시 있을 필요는 없으며 단지 실행하고자 하는 어플리케이션 바이너리만 들어있는 이미지들도 존재한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Alpine 이미지에 대해서,&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Alpine 이미지는 비교적 새 로 만들어진 배포판이지만 컨테이너에서는 그 사용 빈도가 급격하게 증가하여 주요 배포판 중 하나가 되었으며 사용빈도는 계속 증가할 것으로 예상된다. Alpine 이미지는 컨테이너 사용을 목표로 개발되었 으며, Busybox와 musl 라이브러리와 같이 크기를 최소화 한 라이브러리들을 장착하여 다른 이미지들 (100MB-500MB)에 비하여 그 크기(5-20MB) 가 매우 작은 장점을 가진다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;각 배포판별로 이미지 내부에 포함되어 있는 파일들의 평균 개수와 설치되어 있는 패키지들의 수를 조사한 결과가 &amp;lt;표 4&amp;gt;에 정리되어 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&amp;lt;표 4&amp;gt;&lt;/strong&gt; 평균 파일과 패키지 개수&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Distro&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Average File Count&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Average Package Count&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Debian&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;26K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;275&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Alpine&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;8.5K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;36&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ubuntu&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;31.3K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;317&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Centos&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;29.9K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;287&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Scratch&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6.4K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;buildroot&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2.2K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Fedora&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;26.2K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;261&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Opensuse&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;31.7K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;225&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Oracle Linux&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;21.1K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;196&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;arch&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;54K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;241&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;photon&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7.2K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;62&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;rhel&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;10.8K&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;186&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Debian, Ubuntu와 같이 잘 알려진 이미지의 경우 수만 개의 파일이 있지만
+Alpine 이미지의 경우 파일의 수와 평균 패키지의 수가 적다. 그래서 Alpine 이미지의 크기는 다른 것들에 비해 1/10 정도의 크기를 가진다.&lt;/p&gt;
+
+&lt;h3 id=&quot;32-권장-보안-규칙-부합성-분석&quot;&gt;3.2 권장 보안 규칙 부합성 분석&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;각 세 개의 모드를 추가로 분석해서 배포판의 구성을 살펴보니 (그림4)와 같이 첫 번째 모드(x축의 값 2)에서는 Alpine 이미지가 94.7%였으며 두 번째의 모드(x축의 값 6)에서는 Debian과 Ubuntu가 각각 58%, 42%, 그 리고 세 번째 모드(x축의 값 9)에서는 CentOS가 54%, Debian과 Ubuntu가 15%, 22%를 차지하였 다. 따라서 배포판별로 서로 다른 위배 패턴을 확실 히 가지고 있으며 이들이 합쳐져서 (그림 3)과 같 은 멀티모드 분포를 보여준다. 이를 통해 또한 Alpine 이미지가 보편적으로 가장 위배율이 낮은 것으로 나타났다. CentOS는 평균적으로 가장 많은 보안 규칙 위배를 하는 것으로 나타났다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-01-03-A_Study_on_the_Security_Vulnerabilities_of_Container_Images/Compliance_Analyze_total.png&quot; alt=&quot;그림3&quot; /&gt;
+&lt;img src=&quot;/assets/images/2020-01-03-A_Study_on_the_Security_Vulnerabilities_of_Container_Images/Compliance_Analyze_each_mode.png&quot; alt=&quot;그림4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;모든 배포판을 종합적으로 보았을 때 위배된 규칙들.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;자동으로 로그아웃되도록 하는 규칙은 거의 모든 이미지에서 위배하고 있다.
+상위에는 그 외에도 /etc/shadow와 /var/log/wtmp파일의 권한 설정에 문제가 많은 이미지들이 다수로 있는 것으로 밝혀 졌다.
+또한, 대체로 password관련된 규칙들을 많 이 위배하는 것으로 파악되었다. 이와 반대로 어떠 한 이미지에서도 한 번도 위배되지 않은 규칙들도 8개 존재하였다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;분석 결과&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;전체적인 평균 규칙 위배 수는 5.2이지만 배포판 별로 조사에서는 편차가 매우 큰 것으로 나타났다.
+Alpine 이미지가 평균 위배수가 2.2로 가장 적은 것으로 나타났다.
+Debian과 Ubuntu는 모두 6개 이상의 평균 위배수 를 보인다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;33-패키지-취약점-분석&quot;&gt;3.3 패키지 취약점 분석&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;조사에 사용한 전체 이미지의 수는6589개로 보안 규칙 분석에 사용한 10073개의 이미지보다 적은 수이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Alpine 이미지의 패키지 취약점 분석이 빠져있다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;패키지 취약점을 조사하기 위해서는 배포판 관리기관이 주기적으로 제공하는 Security Notice정보가 필요하지 만 Alpine 이미지는 아직까지는 이를 제공하지 않고 있다. 따라서 Alpine 이미지는 제외하고 Debian, Ubuntu, CentOS 이미지들만을 분석하였다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;결론&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;가장 흔하게 발 견된 취약점은 perl 패키지의 취약점인 것으로 나 타났다. Perl 패키지의 취약점을 없애기 위해서는 버전이 “5.24.1-3+deb9u3”이어야 하지만 16 종류의 다른 이전 버전 perl 패키지들이 발견되었 다. 추가적으로 배포판별로 어떠한 패키지 취약점 들이 가장 많은지 조사를 해보았다. Ubuntu의 경우 libssl이 가장 취약하였으며, Debian의 경우는 openssl 패키지였다. 두 배포판 모두 SSL 관련 패 키지에서 가장 많은 취약점이 드러나고 있다. Perl 패키지의 경우는 Debian에서 더 많이 취약점이 발 견되었다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;4장-토의&quot;&gt;4장 토의&lt;/h2&gt;
+
+&lt;p&gt;Alpine의 작은 이미지 크기와 적은 수의 파일, 패키지 수로 인해서 Alpine 이미지의 사용 비율이 높게 나타난다. 천만번 이상 다운로드 된 이미지들 사이에서 Alpine 이미지의 비중이 38% 에 달한다.
+Alpine 이미자가 대체로 보안 규칙 위배는 적은 것으로 나타나고 있지만,
+현재 사용한 보안 위배 규칙들은 기존의 리눅스 보안 상태 점검을 위해서 일반적으로 사용되는 규칙들이며 Alpine 이미지와 같이 컨테이너를 위해 만들어진 비교적 새로운 배포판의 경우에도 적절한 규칙인지에 대한 추가적인 조사가 필요하다.&lt;/p&gt;
+
+&lt;p&gt;종합적으로 분석하면 공개된 컨테이너 이미지들의 보안 취약성은 보편적으로 매우 심각하다.
+약 92%이상의 이미지가 적어도 한 종류의 취약점을 가지고 있으며, Alpine 이미지는 다른 배포판에 비해 보안 규칙 위배도 적은 것으로 나타난다.&lt;/p&gt;
+
+&lt;p&gt;패키지 취약점은 100개가 넘을 수도 있다는 것이 발견되었고 SSL 관련 취약점이 많다.
+따라서 컨테이너 이미지를 다운로드 받아서 검사 없이 바로 사용하는 것은 위험하므로 스캔을 통해 취약점을 발견하고 제거하는 자동화된 시스템을 사용해야한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;5장-결론&quot;&gt;5장 결론&lt;/h2&gt;
+
+&lt;p&gt;99%의 이미지에서 보안 권장 규칙 위배가 발생하였다.
+92%의 이미지에서는 한 개 이상의 보안 취약점이 존재하였다.
+배포판 별로 서로 종류나 수가 매우 다른 분포를 보이고 있다.&lt;/p&gt;
+
+&lt;p&gt;향후 연구 방향은, nginx, mysql, mongodb 등과 같은 어프리케이션에 적용할 수 있는 보안 권장 규칙을 추가하여 어플리케이션의 보안성 조사를 할 예정이다.
+Alpine 이미지의 패키지 취약점 분석을 확인하지 못했으므로 그 기능을 추가한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;h3 id=&quot;reference-list-of-this-paper&quot;&gt;Reference list of this paper&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a name=&quot;1&quot;&gt;&lt;/a&gt; B. Tak, C. Isci, S. Duri, N. Bila, S. Nadgowda, and J. Doran. Understanding security implications of using containers in the cloud.
+In 2017 USENIX Annual Technical Conference (USENIX ATC 17), pages 313–319, Santa Clara, CA, 2017. USENIX Association.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;2&quot;&gt;&lt;/a&gt;Gummaraju, Jayanth and Desikan,Tarun and Turner, Yoshio. Over 30% of Official Images in Docker Hub Contain High Priority Security Vulnerabilities. https://www.banyanops.com/blog/analyzing-docker-hub/&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;3&quot;&gt;&lt;/a&gt;Vulnerability QuickView.
+https://pages.riskbasedsecurity.com/hubfs/R eports/2017/2017\%20Year\%20End\%20Vul nerability%20QuickView\%20Report.pdf&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;4&quot;&gt;&lt;/a&gt;R. Shu, X. Gu, and W. Enck. A study of security vulnerabilities on docker hub. In Proceedings of the Seventh ACM on Conference on Data and Application Security and Privacy, CODASPY ’17, pages 269–280, New York, NY, USA, 2017. ACM.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;5&quot;&gt;&lt;/a&gt;Agentless system crawler. https://github.com/cloudviz/agentless-syste m-crawler&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;6&quot;&gt;&lt;/a&gt;R. Koller, C. Isci, S. Suneja, and E. de Lara. Unified monitoring and analytics in the cloud. In 7th USENIX Workshop on Hot Topics in Cloud Computing (HotCloud 15), Santa Clara, CA, 2015. USENIX Association&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;7&quot;&gt;&lt;/a&gt;T. Bui. Analysis of docker security. arXiv preprint arXiv:1501.02967, 2015.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;8&quot;&gt;&lt;/a&gt;Dokerhub. https://hub.docker.com/.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;9&quot;&gt;&lt;/a&gt;Anchore. Open source tools for container security and compliance. http://anchore.com.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;10&quot;&gt;&lt;/a&gt;Aqua. https://www.aquasec.com/.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;11&quot;&gt;&lt;/a&gt;Clair. Automatic container vulnerability and security scanning for appc and docker. http://coreos.com/clair/&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;12&quot;&gt;&lt;/a&gt;F. Oliveira, S. Suneja, S. Nadgowda, P.
+Nagpurkar, and C. Isci. Opvis: extensible, cross-platform operational visibility and analytics for cloud. In Proceedings of the 18th ACM/IFIP/USENIX Middleware Conference: Industrial Track, pages 43–49. ACM, 2017.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;13&quot;&gt;&lt;/a&gt;T. Combe, A. Martin, and R. Di Pietro. To docker or not to docker: A security perspective. IEEE Cloud Computing, 3(5):54–62, 2016.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;14&quot;&gt;&lt;/a&gt;E. Reshetova, J. Karhunen, T. Nyman, and N. Asokan. Security of os-level virtualization technologies. In Nordic Conference on Secure IT Systems, pages 77–93. Springer, 2014.&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;15&quot;&gt;&lt;/a&gt;Elasticsearch. https://www.elastic.co/&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;compliance-rules-table-권장-보안-규칙들&quot;&gt;Compliance Rules table (권장 보안 규칙들)&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Category&lt;/th&gt;
+      &lt;th&gt;Rules&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;SSH Server&lt;/td&gt;
+      &lt;td&gt;SSH server 는 설치되어 있으면 안된다 &lt;br /&gt;암호 기반의 SSH 인증은 disable 되어 있어야한다.&lt;br /&gt;root로 로그인 하는 것은 disable 되어 있어야한다.&lt;br /&gt;SSH protocol version 2 가 사용되어야 한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Password&lt;/td&gt;
+      &lt;td&gt;암호는 최대 90일 까지만 사용할 수 있어야한다.&lt;br /&gt;암호는 최소 8자 이상이어야 한다.&lt;br /&gt;암호는 최소 1일은 유지해야한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Permission 644&lt;/td&gt;
+      &lt;td&gt;/var/log/wtmp, /var/run/utmp, /etc/group, /etc/passwd, /etc/fstab, /etc/sudoers, /etc/crontab, /etc/ld.so.conf&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Permission 755&lt;/td&gt;
+      &lt;td&gt;/bin, /boot, /dev, /etc, /etc/cron.daily, /etc/cron.hourly, /etc/cron.monthly, /etc/cron.weekly, /lib, /mnt, /sbin&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Permission 744&lt;/td&gt;
+      &lt;td&gt;/etc/profile, /etc/hosts.allow, /etc/sysctl.conf&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Permission 700&lt;/td&gt;
+      &lt;td&gt;/root, /etc/mtab&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Permission 400&lt;/td&gt;
+      &lt;td&gt;/etc/shadow&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Remote Access&lt;/td&gt;
+      &lt;td&gt;telnet server, rssh server, FTP server는 존재하면 안된다.&lt;br /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Others&lt;/td&gt;
+      &lt;td&gt;Umask 는 022 이거나 더 제한적이어야 한다.&lt;br /&gt;1시간 이후에는 자동 로그아웃이 되어야한다.&lt;br /&gt;/root/.rhosts에 대한 READ/WRITE access는 root만 가능해야한다.&lt;br /&gt;/root/.netrc에 대한 READ/WRITE access는 root만 가능해야한다.&lt;br /&gt;각 UID는 한번만 사용되어야 한다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2020-01-03-A_Study_on_the_Security_Vulnerabilities_of_Container_Images/Compliance-Rules.png&quot; alt=&quot;compiance rules tables&quot; width=&quot;30%&quot; height=&quot;30%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;package-vulnerability-source&quot;&gt;Package Vulnerability Source&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Linux Distro Name&lt;/th&gt;
+      &lt;th&gt;URL&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;USN(Ubuntu Security Notices)&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://usn.ubuntu.com/atom.xml&quot;&gt;https://usn.ubuntu.com/atom.xml&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://lists.ubuntu.com/archives/ubuntu-security-announce&quot;&gt;https://lists.ubuntu.com/archives/ubuntu-security-announce&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;DSA(Debian Security Announce)&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://lists.debian.org/debian-security-announce&quot;&gt;https://lists.debian.org/debian-security-announce&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;CeSA(CentOS Security Alerts)&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://lists.centos.org/pipermail/centos-announce&quot;&gt;https://lists.centos.org/pipermail/centos-announce&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;의문점&quot;&gt;의문점&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Alpine 이미지의 크기가 작기 때문에 보안 규칙 위배도 적은 것이 아닌가? 그럼 이미지 크기 별 비율 등으로 따져야하지 않을까?&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Yunchang Chae</name></author><category term="paper" /><category term="container" /><category term="image" /><category term="security" /><summary type="html">본 글은 탁병철. (2018). 컨테이너 이미지의 보안 취약성 조사 연구. 한국차세대컴퓨팅학회 논문지, 14(3), 7-15. 를 읽고 개인적으로 정리한 글입니다. 문제가 발생될 시 포스트를 삭제하도록 하겠습니다.</summary></entry><entry><title type="html">Mac shortcuts</title><link href="http://localhost:4000/blogging/human/Mac_shortcuts/" rel="alternate" type="text/html" title="Mac shortcuts" /><published>2020-01-02T00:00:00+09:00</published><updated>2020-01-02T23:35:00+09:00</updated><id>http://localhost:4000/blogging/human/Mac_shortcuts</id><content type="html" xml:base="http://localhost:4000/blogging/human/Mac_shortcuts/">&lt;h2 id=&quot;command-key&quot;&gt;command key&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;cmd + tab –&amp;gt; Q = quit  H = hide&lt;/li&gt;
@@ -44,7 +616,7 @@
 &lt;ul&gt;
   &lt;li&gt;cmd + shift + A=Application D=Desktop H=Home L=Download O=Document U=Utility&lt;/li&gt;
   &lt;li&gt;cmd + shift + opt + S –&amp;gt; 다른 이름으로 저장&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Yunchang Chae</name></author><category term="mac" /><category term="shortcuts" /><summary type="html">command key</summary></entry><entry><title type="html">My Vim Settings</title><link href="http://localhost:4000/application/my_vim_settings/" rel="alternate" type="text/html" title="My Vim Settings" /><published>2020-01-02T00:00:00+09:00</published><updated>2020-01-02T01:21:00+09:00</updated><id>http://localhost:4000/application/my_vim_settings</id><content type="html" xml:base="http://localhost:4000/application/my_vim_settings/">&lt;p&gt;현재 맥에서 사용중인 vim 설정(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.vimrc&lt;/code&gt;)이다.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Yunchang Chae</name></author><category term="mac" /><category term="shortcuts" /><summary type="html">command key</summary></entry><entry><title type="html">My Vim Settings</title><link href="http://localhost:4000/human/blogging/my_vim_settings/" rel="alternate" type="text/html" title="My Vim Settings" /><published>2020-01-02T00:00:00+09:00</published><updated>2020-01-02T01:21:00+09:00</updated><id>http://localhost:4000/human/blogging/my_vim_settings</id><content type="html" xml:base="http://localhost:4000/human/blogging/my_vim_settings/">&lt;p&gt;현재 맥에서 사용중인 vim 설정(&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.vimrc&lt;/code&gt;)이다.&lt;/p&gt;
 
 &lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; nocompatible
 &lt;span class=&quot;k&quot;&gt;filetype&lt;/span&gt; off
@@ -81,11 +653,9 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'scrooloose/syntastic'&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;&quot; colorscheme Base2Tone_EveningDark&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;colorscheme 을 사용하고 싶으면 아래의 파일을 받아서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.vim/colors&lt;/code&gt; 에 저장한 후 colorscheme 앞에 있는 주석(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;&lt;/code&gt;)을 해제한다.&lt;/p&gt;
+&lt;p&gt;colorscheme 을 사용하고 싶으면 아래의 파일을 받아서 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.vim/colors&lt;/code&gt; 에 저장한 후 colorscheme 앞에 있는 주석(&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&lt;/code&gt;)을 해제한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/atelierbram/Base2Tone-vim/blob/master/autoload/airline/themes/Base2Tone_EveningDark.vim&quot;&gt;Base2Tone Git /Theme&lt;/a&gt;&lt;/p&gt;</content><author><name>Yunchang Chae</name></author><category term="vim" /><category term="settings" /><summary type="html">현재 맥에서 사용중인 vim 설정(~/.vimrc)이다.</summary></entry><entry><title type="html">Markdown Exercise</title><link href="http://localhost:4000/blogging/Markdown_exercise/" rel="alternate" type="text/html" title="Markdown Exercise" /><published>2020-01-01T00:00:00+09:00</published><updated>2020-01-02T00:00:00+09:00</updated><id>http://localhost:4000/blogging/Markdown_exercise</id><content type="html" xml:base="http://localhost:4000/blogging/Markdown_exercise/">&lt;h1 id=&quot;마크다운-시작하기&quot;&gt;마크다운 시작하기&lt;/h1&gt;
-
-&lt;h2 id=&quot;문단&quot;&gt;문단&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/atelierbram/Base2Tone-vim/blob/master/autoload/airline/themes/Base2Tone_EveningDark.vim&quot;&gt;Base2Tone Git /Theme&lt;/a&gt;&lt;/p&gt;</content><author><name>Yunchang Chae</name></author><category term="vim" /><category term="settings" /><summary type="html">현재 맥에서 사용중인 vim 설정(~/.vimrc)이다.</summary></entry><entry><title type="html">마크다운 시작하기</title><link href="http://localhost:4000/blogging/human/Markdown_exercise/" rel="alternate" type="text/html" title="마크다운 시작하기" /><published>2020-01-01T00:00:00+09:00</published><updated>2020-01-02T00:00:00+09:00</updated><id>http://localhost:4000/blogging/human/Markdown_exercise</id><content type="html" xml:base="http://localhost:4000/blogging/human/Markdown_exercise/">&lt;h2 id=&quot;문단&quot;&gt;문단&lt;/h2&gt;
 
 &lt;p&gt;여러 개의 빈줄이 있을 경우에도 마크다운에서는 하나의 빈줄로만 인식한다.&lt;/p&gt;
 
@@ -117,32 +687,32 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'scrooloose/syntastic'&lt;/span&gt;
 
 &lt;h2 id=&quot;강조&quot;&gt;강조&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;굵게하기1&lt;/strong&gt; &lt;strong&gt;굵게하기2&lt;/strong&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;**굵게하기1**&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__굵게하기2__&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;굵게하기1&lt;/strong&gt; &lt;strong&gt;굵게하기2&lt;/strong&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;**굵게하기1**&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;__굵게하기2__&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;기울이기&lt;/em&gt;1 &lt;em&gt;기울이기2&lt;/em&gt;  : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*기울이기1*&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_기울이기2_&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;기울이기&lt;/em&gt;1 &lt;em&gt;기울이기2&lt;/em&gt;  : &lt;code class=&quot;highlighter-rouge&quot;&gt;*기울이기1*&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;_기울이기2_&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;굵은데 &lt;em&gt;기울여&lt;/em&gt;도 보기&lt;/strong&gt; :  ` &lt;strong&gt;굵은데 &lt;em&gt;기울여&lt;/em&gt;도 보기&lt;/strong&gt; `&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;굵은데 _기울여_도 보기&lt;/strong&gt;: ` &lt;strong&gt;굵은데 _기울여_도 보기&lt;/strong&gt;:`&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;기울었는데 &lt;strong&gt;여기만&lt;/strong&gt; 굵어요&lt;/em&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*기울었는데 **여기만** 굵어요*&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;기울었는데 &lt;strong&gt;여기만&lt;/strong&gt; 굵어요&lt;/em&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;*기울었는데 **여기만** 굵어요*&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;기울었는데 &lt;strong&gt;여기만&lt;/strong&gt; 굵어요&lt;/em&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*기울었는데 __여기만__ 굵어요*&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;기울었는데 &lt;strong&gt;여기만&lt;/strong&gt; 굵어요&lt;/em&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;*기울었는데 __여기만__ 굵어요*&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;‘*’ 과 ‘/’ 는 같다.&lt;/p&gt;
 
 &lt;h2 id=&quot;취소선&quot;&gt;취소선&lt;/h2&gt;
 
-&lt;p&gt;&lt;del&gt;취소하기&lt;/del&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~~취소하기~~&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;취소하기&lt;/del&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;~~취소하기~~&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;목록&quot;&gt;목록&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;순서없는 목록1 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;* 순서없는 목록1 &lt;/code&gt;&lt;/p&gt;
+    &lt;p&gt;순서없는 목록1 : &lt;code class=&quot;highlighter-rouge&quot;&gt;* 순서없는 목록1 &lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;순서없는 목록2 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;- 순서없는 목록1 &lt;/code&gt;&lt;/p&gt;
+    &lt;p&gt;순서없는 목록2 : &lt;code class=&quot;highlighter-rouge&quot;&gt;- 순서없는 목록1 &lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -182,24 +752,42 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'scrooloose/syntastic'&lt;/span&gt;
 
 &lt;ul class=&quot;task-list&quot;&gt;
   &lt;li class=&quot;task-list-item&quot;&gt;
-    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;체크박스 만들기 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;- [ ] 체크박스 만들기&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Space[Space]Space'Context'&lt;/code&gt; 형식임&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;체크박스 만들기 : &lt;code class=&quot;highlighter-rouge&quot;&gt;- [ ] 체크박스 만들기&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;-Space[Space]Space'Context'&lt;/code&gt; 형식임&lt;/p&gt;
   &lt;/li&gt;
   &lt;li class=&quot;task-list-item&quot;&gt;
-    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;체크된 박스 만들기 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;- [x] &lt;/code&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;체크된 박스 만들기 : &lt;code class=&quot;highlighter-rouge&quot;&gt;- [x] &lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;링크&quot;&gt;링크&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;url&quot;&gt;링크이름&lt;/a&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[링크이름](url)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;https://www.example.com : &lt;code class=&quot;highlighter-rouge&quot;&gt;https://www.example.com&lt;/code&gt; 링크 적용이 안됨&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;###목록&quot;&gt;목록&lt;/a&gt; : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[목록](###목록)&lt;/code&gt; 이러한 링크도 가능하다&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.example.com&quot;&gt;https://www.example.com&lt;/a&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;https://www.example.com&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;url&quot;&gt;링크이름&lt;/a&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;[링크이름](url)&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#마크다운-시작하기&quot;&gt;첫번째 헤드1&lt;/a&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;[첫번째 헤드1](#마크다운-시작하기)&lt;/code&gt; 이러한 링크도 가능하다&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;!&lt;/code&gt; 를 붙여서 image url로 이미지를 넣을 수 도 있다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#인용&quot;&gt;세번째 헤드2&lt;/a&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;[세번째 헤드2](#인용)&lt;/code&gt; 이러한 링크도 가능하다&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png&quot; alt=&quot;google&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;![google](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)&lt;/code&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;!&lt;/code&gt; 를 붙여서 image url로 이미지를 넣을 수 도 있다.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;[google]&lt;/code&gt; 부분에 글을 넣어 alter text를 설정할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png&quot; alt=&quot;google&quot; width=&quot;20%&quot; height=&quot;20%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png){: width=&quot;20%&quot; height=&quot;20%&quot;}&lt;/code&gt;
+화면에 나타내는 이미지 사이즈를 조절할 수 있다.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;를 지우면 &lt;code class=&quot;highlighter-rouge&quot;&gt;px&lt;/code&gt; 단위로 인식한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;px&lt;/code&gt;를 직접 명시해도된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://chae-yc.github.io&quot;&gt;reference-link&lt;/a&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;[reference-link][ref]&lt;/code&gt; reference 형식의 link를 설정한다. 어떤 문자나 문자열을 사용할 수 있지만 소문자만 사용 가능하다.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;[ref]: http://chae-yc.github.io&lt;/code&gt; 이렇게 reference 할 link를 설정해 주어야 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;a name=&quot;id-value&quot;&amp;gt;&amp;lt;/a&amp;gt;&lt;/code&gt; Anchor tag 를 삽입하여
+&lt;code class=&quot;highlighter-rouge&quot;&gt;[go](#id-value)&lt;/code&gt; 와 같이 사용할 수 도 있다.&lt;/p&gt;
 
 &lt;h2 id=&quot;표&quot;&gt;표&lt;/h2&gt;
 
@@ -241,25 +829,25 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'scrooloose/syntastic'&lt;/span&gt;
 
 &lt;h3 id=&quot;in-line&quot;&gt;In-line&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;`&lt;/code&gt;를 글의 양 옆에 묶으면 한 줄 단위의 코드 를 작성할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;`&lt;/code&gt;를 글의 양 옆에 묶으면 한 줄 단위의 코드 를 작성할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;코드 내부에는 마크다운 문법이 적용되지 않고 plain text로 보이게된다.
 아래의 코드를 보면 굵기와 기울기가 적용되지 않고 있다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code **code** __code__ _code_ *code*&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;code **code** __code__ _code_ *code*&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;` code **code** __code__ _code_ *code* `&lt;/code&gt; 이렇게 작성하면 된다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;` code **code** __code__ _code_ *code* `&lt;/code&gt; 이렇게 작성하면 된다.&lt;/p&gt;
 
 &lt;h3 id=&quot;multi-line&quot;&gt;Multi-line&lt;/h3&gt;
 
 &lt;p&gt;멀티라인 코드를 작성하고 싶으면 ‘```’
-혹은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~~~&lt;/code&gt; 를 코드 블록 시작과 끝에 사용한다.&lt;/p&gt;
+혹은 &lt;code class=&quot;highlighter-rouge&quot;&gt;~~~&lt;/code&gt; 를 코드 블록 시작과 끝에 사용한다.&lt;/p&gt;
 
 &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;count: &lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```javascript
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```javascript
 let cnt = 0;
 console.log(&quot;count: &quot;+ cnt);
 ```
@@ -329,4 +917,4 @@ console.log(&quot;count: &quot;+ cnt);
 
 &lt;h2 id=&quot;수식-uml&quot;&gt;수식, UML&lt;/h2&gt;
 
-&lt;p&gt;당분간은 사용할 일이 없어서 추후에 필요할 때 정리하도록 할 것임&lt;/p&gt;</content><author><name>Yunchang Chae</name></author><category term="markdown" /><category term="language" /><summary type="html">마크다운 시작하기</summary></entry></feed>
+&lt;p&gt;당분간은 사용할 일이 없어서 추후에 필요할 때 정리하도록 할 것임&lt;/p&gt;</content><author><name>Yunchang Chae</name></author><category term="markdown" /><category term="language" /><summary type="html">문단</summary></entry></feed>

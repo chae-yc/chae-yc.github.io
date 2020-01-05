@@ -1,7 +1,8 @@
 ---
-title: "Markdown Exercise"
+title: "마크다운 시작하기"
 categories:
   - blogging
+  - human
 tags:
   - markdown
   - language
@@ -9,8 +10,6 @@ last_modified_at: 2020-01-02T00:00:00+09:00
 toc: true
 toc_sticky: true
 ---
-
-# 마크다운 시작하기
 
 ## 문단
 
@@ -89,15 +88,35 @@ toc_sticky: true
 
 ## 링크
 
+https://www.example.com : `https://www.example.com` 링크 적용이 안됨
+
+<https://www.example.com> : `<https://www.example.com>`
+
 [링크이름](url) : `[링크이름](url)` 
 
-[목록](###목록) : `[목록](###목록)` 이러한 링크도 가능하다
+[첫번째 헤드1](#마크다운-시작하기) : `[첫번째 헤드1](#마크다운-시작하기)` 이러한 링크도 가능하다
 
-![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
+[세번째 헤드2](#인용) : `[세번째 헤드2](#인용)` 이러한 링크도 가능하다
 
-`![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)`
+![google](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)
 
+`![google](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png)`
 `!` 를 붙여서 image url로 이미지를 넣을 수 도 있다.
+`[google]` 부분에 글을 넣어 alter text를 설정할 수 있다.
+
+![google](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png){: width="20%" height="20%"}
+
+`![](https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png){: width="20%" height="20%"}`
+화면에 나타내는 이미지 사이즈를 조절할 수 있다.
+`%`를 지우면 `px` 단위로 인식한다. `px`를 직접 명시해도된다.
+
+[reference-link][ref] : `[reference-link][ref]` reference 형식의 link를 설정한다. 어떤 문자나 문자열을 사용할 수 있지만 소문자만 사용 가능하다.
+`[ref]: http://chae-yc.github.io` 이렇게 reference 할 link를 설정해 주어야 한다.
+
+[ref]: http://chae-yc.github.io
+
+`<a name="id-value"></a>` Anchor tag 를 삽입하여
+`[go](#id-value)` 와 같이 사용할 수 도 있다.
 
 ## 표
 

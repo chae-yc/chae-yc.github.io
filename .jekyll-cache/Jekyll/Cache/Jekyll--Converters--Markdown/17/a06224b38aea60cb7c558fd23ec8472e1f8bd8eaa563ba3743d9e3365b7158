@@ -1,0 +1,81 @@
+I"�<p>본 글은
+<strong>Byungchul Tak &amp; Seorin Park &amp; Prabhakar Kudva, 2019. “Priolog: Mining Important Logs via Temporal Analysis and Prioritization,” Sustainability, MDPI, Open Access Journal, vol. 11(22), pages 1-17, November.</strong>
+를 읽고 개인적으로 정리한 글입니다.
+문제가 발생될 시 포스트를 삭제하도록 하겠습니다.</p>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>IT service들 운영을 관리하기 위해서 Log analytics는 중요한 부분이다.
+소프트웨어가 복잡해지면서 많은 수의 로그 중에서 problem diagnosis를 위한 의미있는 데이터를 찾아내는 것이 힘들어지고 있다.
+본 논문에서는 중요하고 연관성 높은 로그들의 집합으로 만들 수 있는 새로운 기술인 Priolog라는 기술을 소개한다.
+Priolog는 log template temporal analysis, log template frequency analysis, word frequency analysis의 조합을 통해서 분석해서 중요한 로그의 순위를 매겨준다.
+이 기술을 구현하여 popular한 OpenStack platform의 problem diagnosis task에 적용했다.
+분석 결과에 따르면 Priolog는 여러 시나리오에서 실패 원인에 대한 직접적인 힌트를 담고있는 중요한 로그를 효과적으로 찾을 수 있다.
+논문에서 기술의 개념, 디자인 및 실제 로그를 사용한 평가 결과를 보여준다.</p>
+
+<blockquote>
+  <p>Keywords: log analysis; problem diagnosis; temporal correlation; log template; hierarchical clustering</p>
+</blockquote>
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<p>오늘날 IT 서비스 관리에는 로그 분석 기능이 반드시 필요하다.
+로그 메시지는 서비스의 상태 나 문제에 대한 직접적인 힌트로 사용될 수 있다.
+containerization [7], micro-service [8,9], serverless computing [10]의 예들 처럼 작은 컴포넌트들을 여러 개 사용하는 것으로 같은 software architecture paradigm이 바뀌고 있다.
+각 컴포넌트들이 각자의 log stream을 만들기 때문에 powerful search functions, text pattern matching, aggretation tools를 사용하더라도
+로그의 양과 복잡성 때문에 시스템 운영이 어려워진다.
+또한 클라우드 소프트웨어의 variety와 diversity로 인해 소프트웨어 및 시스템에서 생성 된 로그는 format, levels of detail, content가 매우 다른 경향이 있다.</p>
+
+<p>로그를 사용한 searvice failure를 진단하기 위해 이 분야에서 다양한 접근 방식이 제안되어왔다.
+대부분의 연구는 failure가 발생한 후 anomalies 또는 outliers를 detect하는 데 중점을 둔다 [11–17].
+Log analysis은 data mining 그리고 AI 기술을 적용하기에 좋은 타겟이어왔다 [18].
+많은 기술이 이용 가능하지만, 이전의 연구에서는 클라우드 운영 환경에서 실제 중요성과 관련성을 드러내기보다는
+post-mortem analysis(사후 분석)을 통해 anomlies detect하거나
+모니터링된 데이터의 statistical analysis 만을 제공한다.
+따라서, 운영자가 면밀한 검사를 위해서는 관련된 log set로 신속하게 좁혀 나갈 수 있게 만들어야 한다는 과제가 여전히 남아있다.</p>
+
+<p>게다가, 클라우드 환경들은 apllications, system software, patches, cluster provisioning, tenancy(차용: 여러 사용자가 동시에 사용) 그리고 configuration을 변경하는 것이 포함된다.
+통계적으로 드물게 발생하지만, anomalies나 outliers가 감지되더라도 실제 복잡한 cloud setting에서는 operational context에 맞춰서 정상적일 수도 있다.
+(예: 드물지만 정상적인 load changes, software update and pathces, routine configuration modifications, system utilization changes)
+복잡성을 없애기 위해 모니터링 도구 및 분석 기술의 사용이 증가함에 따라 잘못된 경보가 많이 발생하여 시스템 관리자가 파악하기가 힘들다.
+또한, 다양한 로그 유형은 개발자에게도 과제를 부여한다.
+따라서 clouad operational domain context에서 analytics 또는 AI identified statistical outliers가 필터링되거나 적어도 중요성에 따라 정렬되는 것이 핵심이다.
+이상적인 로그 기반 경고 시스템은 outliers를 예측하기 위해 outlier들 끼리의 correlation(상관 관계)를 검토할 뿐만 아니라 active system operation들 간의 temporal correlations도 검토해야한다.
+(예: planned configuration changes, planned or unplanned maintenance schedules, load patterns, daily health check runs, white lists, etc.).
+이 oprational domain의 지식을 AI 및 analysis와 통합하고 연관시키는 것이 이상적인 목표이다.</p>
+
+<p>이를 위해, Priolog를 설계하고 구현했다.
+high-level에서 Priolog는 3개의 독립적인 분석을 한다.</p>
+
+<ul>
+  <li>Log template temporal corelation analysis
+    <ul>
+      <li>Outlying log message type을 찾기 위해, log message type의 시계열(time-series) 중에서 상관 관계를 검토한다. (시간 별 로그들의 상관 관계를 파악)
+        <ul>
+          <li>Log message type 또는 log templete은 contextual 값이나 현재 실행 상태를 반영하는 로그 메시지의 정적 문자열의 일부이다.</li>
+        </ul>
+      </li>
+      <li>Raw log stream을 각 log templete에 맞춰 하나씩 n 개의 시계열 값들로 변환한다. 그리고 temporal 각 시간적 상관 관계의 강도에 따라 클러스터합니다.</li>
+      <li>직관적으로, 다른 클러스터와 제대로 클러스터되지 않은 로그 메시지 유형은 중요한 정보를 포함 할 수있는 비정상적인 동작의 결과입니다.</li>
+      <li>이러한 로그 템플릿은이 분석에서 높은 점수를받습니다.</li>
+    </ul>
+  </li>
+  <li>Log template frequency analysis</li>
+  <li>Term frequency analysis</li>
+</ul>
+
+<p>Log template temporal corelation analysis</p>
+
+<p>두 번째 템플릿 빈도 분석에서는 해당 로그 메시지 유형별로 로그 메시지의 빈도를보고 정상적인 빈도 수준에서 크게 벗어난 것을 식별합니다. 특정 로그 템플릿에서 빈도가 갑자기 변경되는 경우 비정상적인 활동을 나타내는 것일 수 있습니다. 근본 원인을 찾는 데 도움이 될 수 있습니다. 마찬가지로 새로 나타나는 로그 템플릿 유형 (즉, 빈도가 0에서 일부 값으로 증가)에 중요한 정보가 포함될 수 있습니다.</p>
+
+<p>세 번째 용어 빈도 (TF) 분석은 로그 메시지 내의 개별 단어의 희귀 성을 고려하여 개별 메시지의 점수를 계산합니다. 로그 메시지의 점수는 개별 구성 요소 단어의 희귀 점수의 함수로 계산됩니다. 그 이유는 다른 메시지에서 볼 수없는 특정 단어가 비정상 상태에 대한 직접적인 설명 일 수 있기 때문입니다.
+이 세 번째 분석 단계는 이전 두 분석에서 유사한 점수를 가진 로그 템플릿을 더 높은 값의 분석으로 좁히기위한 것입니다.</p>
+
+<p>최종 출력으로 Priolog는 분석에서 세 가지 순위의 곱으로 정렬 된 순위가 지정된 로그 메시지 유형 목록을 생성합니다.</p>
+
+<h2 id="의문점">의문점</h2>
+
+<ol>
+  <li></li>
+</ol>
+:ET

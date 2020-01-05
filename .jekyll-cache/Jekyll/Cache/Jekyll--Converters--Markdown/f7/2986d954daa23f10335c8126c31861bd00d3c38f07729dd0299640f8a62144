@@ -1,0 +1,15 @@
+I"Y<p>본 글은
+<strong>Byungchul Tak &amp; Seorin Park &amp; Prabhakar Kudva, 2019. “Priolog: Mining Important Logs via Temporal Analysis and Prioritization,” Sustainability, MDPI, Open Access Journal, vol. 11(22), pages 1-17, November.</strong>
+를 읽고 개인적으로 정리한 글입니다.
+문제가 발생될 시 포스트를 삭제하도록 하겠습니다.</p>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>Log analytics(로그 분석기s)는 IT service들 운영을 관리하기 위해서 중요한 부분인데 소프트웨어가 복잡해지면서 많은 수의 로그 중에서 problem diagnosis를 위한 의미있는</p>
+
+<h2 id="의문점">의문점</h2>
+
+<ol>
+  <li>Alpine 이미지의 크기가 작기 때문에 보안 규칙 위배도 적은 것이 아닌가? 그럼 이미지 크기 별 비율 등으로 따져야하지 않을까?</li>
+</ol>
+:ET

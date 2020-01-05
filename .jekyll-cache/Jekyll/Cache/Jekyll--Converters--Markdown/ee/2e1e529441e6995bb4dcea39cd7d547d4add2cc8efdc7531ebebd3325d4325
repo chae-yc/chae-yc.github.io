@@ -1,0 +1,48 @@
+I"!<h2 id="command-key">command key</h2>
+
+<ul>
+  <li>cmd + tab –&gt; Q = quit  H = hide</li>
+  <li>cmd + ` –&gt; 같은 앱에서 창 전환</li>
+  <li>cmd 1,2,3,4 –&gt; switch finder view mode</li>
+  <li>
+    <p>cmd + del –&gt; 저장안함 버튼 클릭 (다운로드나 저장/저장안함 선택 화면일 시)</p>
+  </li>
+  <li>cmd + file Drag –&gt; 파일 정렬</li>
+  <li>cmd + window Drag –&gt; 가려진 창 이동하기</li>
+  <li>cmd + text Drag –&gt; 가려진 창에서 텍스트 긁어오기</li>
+  <li>cmd + finder_bar or menu_bar or side_bar Drag –&gt; 삭제</li>
+</ul>
+
+<h2 id="option-key">option key</h2>
+
+<ul>
+  <li>opt + file Drag –&gt; 파일 복사</li>
+  <li>opt + Dock_app Click –&gt; 강제 종료 가능</li>
+  <li>opt + wifi –&gt; wifi information</li>
+  <li>opt + bluetooth –&gt; send, browse device</li>
+  <li>opt + tab –&gt; 웹페이지 링크 포커스</li>
+  <li>opt + mission control –&gt; 데스크탑 간편제거 가능</li>
+  <li>
+    <p>launchpad + opt –&gt; 삭제 버튼 활성화</p>
+  </li>
+  <li>한글에서 opt 키 누르고 입력시 영어로 입력됨</li>
+  <li>영어에서 opt 키 누르고 입력시 특수문자 입력됨</li>
+</ul>
+
+<h2 id="command--option-key">command + option key</h2>
+
+<ul>
+  <li>cmd + opt + A –&gt; 전체 선택 취소</li>
+  <li>cmd + opt + H –&gt; 작업 중인 창을 제외한 나머지 창을 감추기</li>
+  <li>cmd + opt + W –&gt; 작업 중인 창을 제외한 나머지 창을 끄기</li>
+  <li>cmd + opt + D –&gt; Dock toggle</li>
+  <li>cmd + opt + i –&gt; 종합 information</li>
+</ul>
+
+<h2 id="use-shift-key">use shift key</h2>
+
+<ul>
+  <li>cmd + shift + A=Application D=Desktop H=Home L=Download O=Document U=Utility</li>
+  <li>cmd + shift + opt + S –&gt; 다른 이름으로 저장</li>
+</ul>
+:ET

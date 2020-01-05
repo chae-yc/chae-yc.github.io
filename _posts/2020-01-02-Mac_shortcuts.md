@@ -2,6 +2,7 @@
 title: "Mac shortcuts"
 categories:
   - blogging
+  - human
 tags:
   - mac
   - shortcuts

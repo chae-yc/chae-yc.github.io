@@ -2,6 +2,6 @@
 title: Undergraduate
 layout: category
 permalink: /categories/undergraduate/
-taxonomy: Undergraduate
+taxonomy: undergraduate
 ---
-Posts what I have studied in undergraduate. It's in 'Undergraduate' category.
+Posts what I have studied in undergraduate. It's in 'undergraduate' category.

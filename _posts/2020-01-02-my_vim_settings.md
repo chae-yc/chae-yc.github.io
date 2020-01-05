@@ -1,7 +1,8 @@
 ---
 title: "My Vim Settings"
 categories:
-  - Application
+  - human
+  - blogging
 tags:
   - vim
   - settings
