@@ -17,7 +17,7 @@
         {% else %}
           {% assign author_link = author.home | relative_url %}
         {% endif %}
-        <a href="{{ author_link }}">
+        <a href="{{ author_link }}" target="_blank">
           <img src="{{ author_src }}" alt="{{ author.name }}" itemprop="image">
         </a>
       {% else %}
@@ -58,7 +58,7 @@
 
       {% if author.uri %}
         <li>
-          <a href="{{ author.uri }}" itemprop="url">
+          <a href="{{ author.uri }}" itemprop="url" target="_blank">
             <i class="fas fa-fw fa-link" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].website_label | default: "Website" }}
           </a>
         </li>
@@ -66,7 +66,7 @@
 
       {% if author.email %}
         <li>
-          <a href="mailto:{{ author.email }}">
+          <a href="mailto:{{ author.email }}" target="_blank">
             <meta itemprop="email" content="{{ author.email }}" />
             <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].email_label | default: "Email" }}
           </a>
@@ -139,7 +139,7 @@
 
       {% if author.github %}
         <li>
-          <a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+          <a href="https://github.com/{{ author.github }}" itemprop="sameAs" rel="nofollow noopener noreferrer" target="_blank">
             <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
         </li>

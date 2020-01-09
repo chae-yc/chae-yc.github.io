@@ -40,7 +40,7 @@ containerization [7], micro-service [8,9], serverless computing [10]의 예들 �
 로그의 양과 복잡성 때문에 시스템 운영이 어려워진다.
 또한 클라우드 소프트웨어의 variety와 diversity로 인해 소프트웨어 및 시스템에서 생성 된 로그는 format, levels of detail, content가 매우 다른 경향이 있다.
 
-로그를 사용한 searvice failure를 진단하기 위해 이 분야에서 다양한 접근 방식이 제안되어왔다.
+로그를 사용한 service failure를 진단하기 위해 이 분야에서 다양한 접근 방식이 제안되어왔다.
 대부분의 연구는 failure가 발생한 후 anomalies 또는 outliers를 detect하는 데 중점을 둔다 [11–17].
 Log analysis은 data mining 그리고 AI 기술을 적용하기에 좋은 타겟이어왔다 [18].
 많은 기술이 이용 가능하지만, 이전의 연구에서는 클라우드 운영 환경에서 실제 중요성과 관련성을 드러내기보다는
@@ -181,6 +181,11 @@ log template이 몇개의 시간 값에 각자 그룹을 지어 모여있는 것
 ![log-templates-heatmap](/assets/images/2020-01-05-Priolog Mining Important Logs via Temporal Analysis and Prioritization/log-templates-heatmap.png)
 
 #### 2.1.3 Correlation Matrix Construction
+
+log template의 갯수로부터 유도되어진 시계열의 쌍들을 얻기 위해서, 상관 계수 (correlation coefficient)를 계산하고 `n x n`의 상관 관계가 있는 행렬(corrleation matrix)을 만들었다.
+Pearson correlation coefficient metrix (which is defined as the covariance of two time series data divided by the product of two standard deviations) 를 적용해서 correlation을 계산하였다.
+1에 가까운 값이 높은 상관 관계가 있다는 것을 나타낸다.
+
 
 
 
