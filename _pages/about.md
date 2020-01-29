@@ -19,7 +19,7 @@ I am still working in graduate school to continue my studies.
 
 ## Resume
 
-[Resume]("/assets/resume.pdf"){: .btn .btn--success .btn--large}
+[Resume](/assets/resume.pdf){: .btn .btn--success .btn--large}
 
 {% include gallery id="layouts_gallery" %}
 
