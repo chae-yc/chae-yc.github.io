@@ -4,7 +4,6 @@ categories:
   - scientist
   - paper_reading
 tags:
-  - paper
   - container
   - image
   - security
