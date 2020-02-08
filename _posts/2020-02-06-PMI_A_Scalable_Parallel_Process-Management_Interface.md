@@ -21,6 +21,10 @@ share: false
 를 읽고 개인적으로 정리한 글입니다.
 문제가 발생될 시 포스트를 삭제하도록 하겠습니다.
 
+This post is a personalized summary of
+**PMI: A Scalable Parallel Process-Management Interface for Extreme-Scale Systems -Pavan BalajiDarius BuntinasDavid GoodellWilliam GroppJayesh KrishnaEwing LuskRajeev Thakur. (EuroMPI 2010: Recent Advances in the Message Passing Interface) pp 31-41**
+I will delete when any problems occured.
+
 ## Abscract
 
 MPICH2 uses PMI (PMI1, PMI2)
@@ -82,4 +86,37 @@ In other cases, such as processes on a typical commodity cluster, the PMI librar
 
 While the PMI library can be implemented in any way, PMI-1 and PMI-2 uses predefined *wire protocol* which exchange data through the socket interface.
 
+**Advantage**: Any application using PMI API with predefined PMI *wire protocol* is compatible with any PMI process manager that accepts the wire protocol.
 
+PMI API and PMI wire protocol are separate entities.
+For example, BG/L provides PMI API but doesn't use the sockets-based wire protocol.
+
+### 2.2 Overview of the First-Generation PMI (PMI-1)
+
+skip
+
+### 2.3 PMI Requirements for the Process Manager
+
+Two primary requirements for the process manager.
+
+1. separation of features is needed to enable layering on a "native" process manager with the lowest possible overhead.
+  - For example, an interface that requires asynchronous processing of data or interrupts to manage data might cause additional overhead for applications even when they are not interacting with the PMI services. (데이터를 비동기 처리하거나 데이터를 관리하기 위해서 interrupt를 요구하는 interface는 PMI 서비스 작업을 하지 않을 때에도 overhaed를 유발 할 수 있다.)
+2. scalable data-interchange approach for the key-value system is needed
+  - Consider, each process in a parallel job starts, <u>creates a contact id</u> and <u>available to the other processes in parallel job</u>
+  - Simple way: provide the data to central server. This approach is not scalable.    
+  - The solution in PMI provides a collective abstraction using efficient collective algorithms to provide more scalable behavior.
+    
+- Simple way(Single Central Server)
+  - If all processes add/extract a (key, value) pair data into a database, time complexity is O(p);
+- PMI solution
+  - processes put data into a key-value space (KVS).
+  - then collectively perform a fence operation.
+  - fence operation, which is collective over all processes, provides an excellent opportunity for the implementation to distribute the data supplied by the put operations in a scalable manner.
+  - Following completion of the fence, all processes can perform a get operation against the KVS.
+
+
+
+Such a design permits many implementations.
+Most important, the fence step, which is collective over all processes, provides
+an excellent opportunity for the implementation to distribute the data supplied
+by the put operations in a scalable manner.
