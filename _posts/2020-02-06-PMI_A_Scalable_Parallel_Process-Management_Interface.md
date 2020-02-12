@@ -51,7 +51,8 @@ PMI1 is widely used following areas
   - MPICH2
   - MVAPICH2, Intel MPI, SiCortex MPI, Microsoft MPI are derived from PMI1.
 - in process-management frameworks for the process-manager side
-  - MPICH2's internal process managers(Hydra, MPD, SMPD, Gforker, Remshell)- Slurm, OSC mpiexec, OSUmpirun
+  - MPICH2's internal process managers(Hydra, MPD, SMPD, Gforker, Remshell)
+  - Slurm, OSC mpiexec, OSUmpirun
 
 ## 2. Requirements of a Process-Management Interface
 
@@ -113,10 +114,3 @@ Two primary requirements for the process manager.
   - then collectively perform a fence operation.
   - fence operation, which is collective over all processes, provides an excellent opportunity for the implementation to distribute the data supplied by the put operations in a scalable manner.
   - Following completion of the fence, all processes can perform a get operation against the KVS.
-
-
-
-Such a design permits many implementations.
-Most important, the fence step, which is collective over all processes, provides
-an excellent opportunity for the implementation to distribute the data supplied
-by the put operations in a scalable manner.
