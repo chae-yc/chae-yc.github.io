@@ -6,7 +6,7 @@ categories:
 tags:
   - MPI
   - HPC
-last_modified_at: 2020-02-2T23:58:00+09:00
+last_modified_at: 2020-02-12T23:58:00+09:00
 toc: true
 published: true
 share: false
