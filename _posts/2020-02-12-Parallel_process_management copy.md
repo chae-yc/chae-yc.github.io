@@ -59,10 +59,4 @@ Hybrid (e.g. MPI+OpenMP) programming
 ![comparison](/assets/images/2020-02-12-Parallel_process_management/comparison.png)
 Kurtzer, Gregory & Sochat, Vanessa & Bauer, Michael. (2017). Singularity: Scientific containers for mobility of compute. PLoS ONE. 12. 10.1371/journal.pone.0177459. 
 
-Docker is well designed for micro-virtual service
-HPC centers can't install it and provide irreasonable service.
-
-HPC center have to keep secure, compatible environment.
-
-
 Singularity **extreme portability** 
