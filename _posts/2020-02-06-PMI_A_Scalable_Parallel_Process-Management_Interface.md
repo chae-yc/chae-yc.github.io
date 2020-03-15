@@ -104,7 +104,7 @@ Two primary requirements for the process manager.
   - For example, an interface that requires asynchronous processing of data or interrupts to manage data might cause additional overhead for applications even when they are not interacting with the PMI services. (데이터를 비동기 처리하거나 데이터를 관리하기 위해서 interrupt를 요구하는 interface는 PMI 서비스 작업을 하지 않을 때에도 overhaed를 유발 할 수 있다.)
 2. scalable data-interchange approach for the key-value system is needed
   - Consider, each process in a parallel job starts, <u>creates a contact id</u> and <u>available to the other processes in parallel job</u>
-  - Simple way: provide the data to central server. This approach is not scalable.    
+  - Simple way: provide the data to central server. This approach is not scalable.
   - The solution in PMI provides a collective abstraction using efficient collective algorithms to provide more scalable behavior.
     
 - Simple way(Single Central Server)
