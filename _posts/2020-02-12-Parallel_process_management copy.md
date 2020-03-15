@@ -6,7 +6,7 @@ categories:
 tags:
   - MPI
   - HPC
-last_modified_at: 2020-02-2T23:58:00+09:00
+last_modified_at: 2020-02-12T23:58:00+09:00
 toc: true
 published: true
 share: false
@@ -43,10 +43,11 @@ Hybrid (e.g. MPI+OpenMP) programming
   - Intel MPI
   - SiCortex MPI
   - Microsoft MPI
-- Process Managers (using PMI library) (can use )
-  - Hydra, MPD, SMPD, Gforker, Remhsell (part of MPICH, MPICH2) -- PMI-1, PMI-2, PMI-x is developed for this project
+- Process Managers (using PMI library)
+  - Hydra, MPD, SMPD, Gforker, Remhsell (part of MPICH, MPICH2) -- PMI-1, PMI-2 is developed for this project
   - ~~ORTEd~~ PPRTE(PMIx Reference RunTime Environment) (part of OpenMPI)
   - Slurm PMI (part of Slrum)
+  - OpenPMIx
 - Process manager
   - Slurm
   - IBM LSF
